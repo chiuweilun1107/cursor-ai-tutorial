@@ -279,21 +279,6 @@ const HeroCarousel: React.FC = () => {
           </button>
         ))}
       </div>
-
-      {/* 控制面板 */}
-      <div className="absolute top-8 right-8 z-20 flex items-center space-x-4">
-        {/* 暫停指示器 */}
-        {(isPaused || !isAutoPlay) && (
-          <div className="bg-white/20 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm border border-white/30">
-            已暫停
-          </div>
-        )}
-      </div>
-
-      {/* 鍵盤提示 */}
-      <div className="absolute bottom-8 right-8 z-20 bg-white/10 backdrop-blur-sm text-white/70 px-3 py-2 rounded-lg text-xs hidden md:block">
-        ← → 切換頁面
-      </div>
     </section>
   )
 }
