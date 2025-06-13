@@ -9,13 +9,14 @@ interface HeroSlide {
   description: string
   bgGradient: string
   image: string
-  badge?: string
+  badge: string
 }
 
 const HeroCarousel: React.FC = () => {
   const [currentSlide, setCurrentSlide] = useState(0)
   const [isAutoPlay, setIsAutoPlay] = useState(true)
   const [isTransitioning, setIsTransitioning] = useState(false)
+  const [isPaused, setIsPaused] = useState(false)
 
   // 輪播內容 - 5個精心設計的頁面，添加圖片
   const heroSlides: HeroSlide[] = [
@@ -73,7 +74,7 @@ const HeroCarousel: React.FC = () => {
   useEffect(() => {
     let timer: NodeJS.Timeout
     
-    if (isAutoPlay) {
+    if (isAutoPlay && !isPaused) {
       timer = setTimeout(() => {
         nextSlide()
       }, SLIDE_DURATION)
@@ -82,7 +83,7 @@ const HeroCarousel: React.FC = () => {
     return () => {
       if (timer) clearTimeout(timer)
     }
-  }, [isAutoPlay, currentSlide])
+  }, [isAutoPlay, isPaused, currentSlide])
 
   // 切換到下一張
   const nextSlide = useCallback(() => {
@@ -122,11 +123,11 @@ const HeroCarousel: React.FC = () => {
 
   // 滑鼠懸停暫停
   const handleMouseEnter = () => {
-    setIsAutoPlay(false)
+    setIsPaused(true)
   }
 
   const handleMouseLeave = () => {
-    setIsAutoPlay(true)
+    setIsPaused(false)
   }
 
   // 鍵盤導航
@@ -154,7 +155,7 @@ const HeroCarousel: React.FC = () => {
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      {/* 背景 */}
+      {/* 背景圖片 - 佈滿整個輪播區 */}
       {heroSlides.map((slide, index) => (
         <div
           key={slide.id}
@@ -162,77 +163,77 @@ const HeroCarousel: React.FC = () => {
             index === currentSlide ? 'opacity-100' : 'opacity-0'
           }`}
         >
-          <div className={`absolute inset-0 bg-gradient-to-r ${slide.bgGradient}`} />
+          {/* 背景圖片 */}
+          <img
+            src={slide.image}
+            alt={slide.title}
+            className="w-full h-full object-cover"
+            loading={index === 0 ? 'eager' : 'lazy'}
+          />
+          {/* 深色覆蓋層，讓文字更清晰 */}
+          <div className="absolute inset-0 bg-black/40" />
+          {/* 漸變覆蓋層 */}
+          <div className={`absolute inset-0 bg-gradient-to-r ${slide.bgGradient} opacity-60`} />
         </div>
       ))}
 
-      {/* 主要內容 */}
-      <div className="relative z-10 h-full">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full">
-          {/* 使用60/40比例：左側文字40%，右側圖片60% */}
-          <div className="grid lg:grid-cols-5 gap-8 h-full items-center">
+      {/* 文字內容 - 浮現在圖片之上 */}
+      <div className="relative z-10 h-full flex items-center">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+          <div className="max-w-4xl">
+            {/* 徽章 */}
+            {heroSlides[currentSlide].badge && (
+              <div 
+                className={`inline-block bg-white/20 backdrop-blur-sm text-white px-6 py-3 rounded-full text-sm font-medium mb-8 border border-white/30 transition-all duration-1000 ${
+                  isTransitioning ? 'animate-fade-in-up' : 'animate-fade-in'
+                }`}
+              >
+                {heroSlides[currentSlide].badge}
+              </div>
+            )}
             
-            {/* 左側文字區塊 - 佔2/5 (40%) */}
-            <div className="lg:col-span-2 text-left">
-              {/* 徽章 */}
-              {heroSlides[currentSlide].badge && (
-                <div className="inline-block bg-white/10 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-medium mb-6 border border-white/20">
-                  {heroSlides[currentSlide].badge}
-                </div>
-              )}
-              
-              {/* 主標題 */}
-              <h1 className="text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
-                {heroSlides[currentSlide].title}
-              </h1>
-              
-              {/* 副標題 */}
-              <h2 className="text-2xl lg:text-3xl font-light text-white/90 mb-8">
-                {heroSlides[currentSlide].subtitle}
-              </h2>
-              
-              {/* 描述 */}
-              <p className="text-lg text-white/80 mb-10 leading-relaxed">
-                {heroSlides[currentSlide].description}
-              </p>
-              
-              {/* 按鈕群組 */}
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Link
-                  to="/courses"
-                  className="bg-white text-gray-900 px-8 py-4 rounded-xl text-lg font-semibold hover:bg-gray-100 transition-all duration-300 text-center"
-                >
-                  開始學習
-                </Link>
-                <button className="border-2 border-white/30 text-white px-8 py-4 rounded-xl text-lg font-semibold hover:bg-white/10 transition-all duration-300">
-                  了解更多
-                </button>
-              </div>
-            </div>
-
-            {/* 右側圖片區塊 - 佔3/5 (60%) */}
-            <div className="lg:col-span-3 flex items-center justify-center h-full">
-              <div className="relative w-full h-2/3 max-w-4xl">
-                {heroSlides.map((slide, index) => (
-                  <div
-                    key={slide.id}
-                    className={`absolute inset-0 transition-all duration-1000 ease-in-out ${
-                      index === currentSlide 
-                        ? 'opacity-100 transform translate-x-0' 
-                        : 'opacity-0 transform translate-x-8'
-                    }`}
-                  >
-                    <img
-                      src={slide.image}
-                      alt={slide.title}
-                      className="w-full h-full object-cover rounded-3xl shadow-2xl"
-                      loading={index === 0 ? 'eager' : 'lazy'}
-                    />
-                    {/* 圖片覆蓋效果 */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-3xl" />
-                  </div>
-                ))}
-              </div>
+            {/* 主標題 */}
+            <h1 
+              className={`text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight transition-all duration-1000 ${
+                isTransitioning ? 'animate-slide-up' : 'animate-fade-in'
+              }`}
+            >
+              {heroSlides[currentSlide].title}
+            </h1>
+            
+            {/* 副標題 */}
+            <h2 
+              className={`text-xl md:text-2xl lg:text-3xl font-light text-white/90 mb-8 leading-relaxed transition-all duration-1000 delay-200 ${
+                isTransitioning ? 'animate-fade-in-up' : 'animate-fade-in'
+              }`}
+            >
+              {heroSlides[currentSlide].subtitle}
+            </h2>
+            
+            {/* 描述 */}
+            <p 
+              className={`text-lg md:text-xl text-white/80 mb-10 max-w-3xl leading-relaxed transition-all duration-1000 delay-400 ${
+                isTransitioning ? 'animate-fade-in-up' : 'animate-fade-in'
+              }`}
+            >
+              {heroSlides[currentSlide].description}
+            </p>
+            
+            {/* 按鈕群組 */}
+            <div 
+              className={`flex flex-col sm:flex-row gap-4 transition-all duration-1000 delay-600 ${
+                isTransitioning ? 'animate-fade-in-up' : 'animate-fade-in'
+              }`}
+            >
+              <Link
+                to="/courses"
+                className="bg-white text-gray-900 px-8 py-4 rounded-xl text-lg font-semibold hover:bg-gray-100 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl text-center"
+              >
+                開始學習
+              </Link>
+              <button className="bg-white/10 backdrop-blur-sm border-2 border-white/30 text-white px-8 py-4 rounded-xl text-lg font-semibold hover:bg-white/20 transition-all duration-300 text-center">
+                觀看介紹影片
+              </button>
             </div>
           </div>
         </div>
@@ -255,20 +256,43 @@ const HeroCarousel: React.FC = () => {
         <ChevronRight className="w-6 h-6" />
       </button>
 
-      {/* 點狀指示器 - 蘋果風格 */}
+      {/* 點狀指示器 */}
       <div className="absolute bottom-12 left-1/2 transform -translate-x-1/2 z-20 flex space-x-3">
         {heroSlides.map((_, index) => (
           <button
             key={index}
             onClick={() => goToSlide(index)}
             disabled={isTransitioning}
-            className={`w-2 h-2 rounded-full transition-all duration-300 ${
+            className={`w-3 h-3 rounded-full transition-all duration-300 disabled:cursor-not-allowed ${
               index === currentSlide 
                 ? 'bg-white scale-125' 
-                : 'bg-white/40 hover:bg-white/60'
+                : 'bg-white/50 hover:bg-white/75 hover:scale-110'
             }`}
-          />
+            aria-label={`跳轉到第 ${index + 1} 張`}
+          >
+            {index === currentSlide && (
+              <div 
+                className="absolute inset-0 bg-white/30 rounded-full scale-150 animate-ping"
+                aria-hidden="true"
+              />
+            )}
+          </button>
         ))}
+      </div>
+
+      {/* 控制面板 */}
+      <div className="absolute top-8 right-8 z-20 flex items-center space-x-4">
+        {/* 暫停指示器 */}
+        {(isPaused || !isAutoPlay) && (
+          <div className="bg-white/20 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm border border-white/30">
+            已暫停
+          </div>
+        )}
+      </div>
+
+      {/* 鍵盤提示 */}
+      <div className="absolute bottom-8 right-8 z-20 bg-white/10 backdrop-blur-sm text-white/70 px-3 py-2 rounded-lg text-xs hidden md:block">
+        ← → 切換頁面
       </div>
     </section>
   )
