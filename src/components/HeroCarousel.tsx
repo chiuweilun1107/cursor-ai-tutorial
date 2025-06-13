@@ -18,52 +18,52 @@ const HeroCarousel: React.FC = () => {
   const [isTransitioning, setIsTransitioning] = useState(false)
   const [isPaused, setIsPaused] = useState(false)
 
-  // 輪播內容 - 5個精心設計的頁面，添加圖片
+  // 輪播內容 - AI應用平台的5個核心頁面
   const heroSlides: HeroSlide[] = [
     {
       id: 1,
-      title: "Cursor AI",
-      subtitle: "讓AI成為你的程式設計夥伴",
-      description: "學習最先進的AI輔助程式開發工具，從基礎操作到進階技巧，提升開發效率，成為AI時代的優秀開發者。",
-      bgGradient: "from-slate-900 to-slate-800",
-      image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80",
-      badge: "最新技術"
+      title: "AI應用時代",
+      subtitle: "重新定義開發者的工作方式",
+      description: "不只是代碼補全，而是完整的AI工作流程。掌握Cursor、ChatGPT、Claude的深度整合，讓AI成為你的智能工作夥伴。生產力提升66%，開啟7兆美元的AI應用市場。",
+      bgGradient: "from-slate-900 via-blue-900 to-indigo-800",
+      image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&auto=format&fit=crop&w=2340&q=80",
+      badge: "AI應用革命"
     },
     {
       id: 2,
-      title: "AI輔助開發",
-      subtitle: "效率提升的秘密",
-      description: "專業開發者都在使用的AI工具，讓代碼編寫變得更智能、更快速。從簡單的自動完成到複雜的架構設計。",
-      bgGradient: "from-blue-900 to-indigo-800",
-      image: "https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80",
-      badge: "效率提升"
+      title: "Model Context Protocol",
+      subtitle: "AI工具的連接標準",
+      description: "Anthropic最新開源的MCP協議，讓AI工具像USB-C一樣通用。連接數據庫、API、檔案系統，打造真正強大的AI應用。支援GitHub、Slack、PostgreSQL等企業系統。",
+      bgGradient: "from-purple-900 via-violet-800 to-blue-800",
+      image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&auto=format&fit=crop&w=2340&q=80",
+      badge: "MCP技術深度"
     },
     {
       id: 3,
-      title: "未來技能",
-      subtitle: "掌握AI時代的核心競爭力",
-      description: "不只是工具，更是思維方式的轉變。學會與AI協作，成為新時代的技術領導者，開啟職業生涯新篇章。",
-      bgGradient: "from-purple-900 to-pink-800",
-      image: "https://images.unsplash.com/photo-1518932945647-7a1c969f8be2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80",
-      badge: "未來技能"
+      title: "Cursor Rules",
+      subtitle: "讓AI理解你的項目邏輯",
+      description: "不只是代碼補全，而是讓AI深度理解你的項目架構、編碼風格、業務邏輯。透過Rules配置，打造專屬的AI開發助手。程式設計師效能提升126%。",
+      bgGradient: "from-emerald-900 via-teal-800 to-cyan-800",
+      image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2340&q=80",
+      badge: "超越代碼補全"
     },
     {
       id: 4,
-      title: "完整課程",
-      subtitle: "從入門到精通的學習之路",
-      description: "三階段完整課程設計，初級基礎操作、中級進階技巧、高級企業應用。每個階段都有實作專案，學以致用。",
-      bgGradient: "from-emerald-900 to-teal-800",
-      image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80",
-      badge: "系統化學習"
+      title: "AI工具生態",
+      subtitle: "Cursor + ChatGPT + Claude",
+      description: "學會整合多個AI工具的優勢：Cursor處理代碼、ChatGPT解決問題、Claude深度分析。建立個人AI工具鏈，40%的專業開發者都在使用多AI工具策略。",
+      bgGradient: "from-orange-900 via-red-800 to-pink-800",
+      image: "https://images.unsplash.com/photo-1518932945647-7a1c969f8be2?ixlib=rb-4.0.3&auto=format&fit=crop&w=2340&q=80",
+      badge: "多AI工具整合"
     },
     {
       id: 5,
-      title: "學習社群",
-      subtitle: "與開發者一起成長",
-      description: "加入活躍的學習社群，與同好交流心得、分享專案、解決問題。導師定期答疑，同儕互助學習。",
-      bgGradient: "from-orange-900 to-red-800",
-      image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80",
-      badge: "社群學習"
+      title: "企業級AI應用",
+      subtitle: "從個人效率到團隊協作",
+      description: "企業如何系統性地導入AI工具，建立AI工作流程，提升整個團隊的協作效率和技術能力。92%的企業正在增加AI投資，搶佔先機。",
+      bgGradient: "from-indigo-900 via-purple-800 to-pink-800",
+      image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2340&q=80",
+      badge: "企業AI轉型"
     }
   ]
 

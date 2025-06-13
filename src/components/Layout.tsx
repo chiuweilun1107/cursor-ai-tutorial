@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { Menu, X, Home, BookOpen, Target, Lightbulb, HelpCircle } from 'lucide-react'
+import { Menu, X, Home, Layers, Zap, Target, Lightbulb, HelpCircle } from 'lucide-react'
 
 interface LayoutProps {
   children: React.ReactNode
@@ -12,10 +12,10 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
 
   const navigation = [
     { name: '首頁', href: '/', icon: Home },
-    { name: '教學課程', href: '/courses', icon: BookOpen },
-    { name: '學習路徑', href: '/courses', icon: Target },
-    { name: '實用技巧', href: '/tips', icon: Lightbulb },
-    { name: '常見問題', href: '/faq', icon: HelpCircle },
+    { name: 'AI工具生態', href: '/courses', icon: Layers },
+    { name: 'MCP技術', href: '/courses/advanced', icon: Zap },
+    { name: '實戰應用', href: '/tips', icon: Target },
+    { name: '社群討論', href: '/faq', icon: HelpCircle },
   ]
 
   const isActive = (path: string) => {
@@ -32,11 +32,14 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
           <div className="flex justify-between h-16">
             {/* Logo */}
             <div className="flex items-center">
-              <Link to="/" className="flex items-center space-x-2">
-                <div className="w-8 h-8 bg-primary-600 rounded-lg flex items-center justify-center">
-                  <span className="text-white font-bold text-lg">C</span>
+              <Link to="/" className="flex items-center space-x-3">
+                <div className="w-8 h-8 bg-gradient-to-br from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
+                  <span className="text-white font-bold text-lg">AI</span>
                 </div>
-                <span className="font-bold text-xl text-gray-900">Cursor Learning</span>
+                <div className="flex flex-col">
+                  <span className="font-bold text-xl text-gray-900">AI應用平台</span>
+                  <span className="text-xs text-gray-500 -mt-1">AI Application Platform</span>
+                </div>
               </Link>
             </div>
 
@@ -107,7 +110,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       <footer className="bg-white border-t mt-16">
         <div className="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
           <div className="text-center text-gray-600">
-            <p>&copy; 2025 Cursor Learning. 讓AI成為你的程式設計夥伴</p>
+            <p>&copy; 2025 AI應用平台. 重新定義開發者的工作方式</p>
           </div>
         </div>
       </footer>
