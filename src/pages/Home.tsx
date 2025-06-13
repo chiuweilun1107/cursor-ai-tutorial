@@ -1,195 +1,14 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
-import { ArrowRight, MessageCircle, Edit3, Layers, Zap, TrendingUp, Clock, Users, BookOpen, Star, Play, CheckCircle, ChevronLeft, ChevronRight } from 'lucide-react'
+import { ArrowRight, MessageCircle, Edit3, Layers, TrendingUp, Clock, Users, BookOpen, CheckCircle } from 'lucide-react'
+import HeroCarousel from '../components/HeroCarousel'
 
 const Home: React.FC = () => {
-  const [currentSlide, setCurrentSlide] = useState(0)
-
-  // 輪播內容
-  const heroSlides = [
-    {
-      id: 1,
-      title: "Cursor AI",
-      subtitle: "讓AI成為你的程式設計夥伴",
-      description: "學習最先進的AI輔助程式開發工具，從基礎操作到進階技巧，提升70%開發效率，成為AI時代的優秀開發者",
-      bgGradient: "from-blue-600 via-purple-600 to-pink-500",
-      badge: "🚀 掌握AI程式編輯器的未來",
-      image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80"
-    },
-    {
-      id: 2,
-      title: "AI輔助開發",
-      subtitle: "效率提升70%的秘密",
-      description: "專業開發者都在使用的AI工具，讓代碼編寫變得更智能、更快速。從簡單的自動完成到複雜的架構設計",
-      bgGradient: "from-emerald-600 via-teal-600 to-cyan-500",
-      badge: "⚡ 開發效率革命性提升",
-      image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80"
-    },
-    {
-      id: 3,
-      title: "未來技能",
-      subtitle: "掌握AI時代的核心競爭力",
-      description: "不只是工具，更是思維方式的轉變。學會與AI協作，成為新時代的技術領導者，開啟職業生涯新篇章",
-      bgGradient: "from-orange-600 via-red-600 to-pink-600",
-      badge: "🎯 未來已來，你準備好了嗎？",
-      image: "https://images.unsplash.com/photo-1504639725590-34d0984388bd?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80"
-    }
-  ]
-
-  // 自動輪播
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % heroSlides.length)
-    }, 5000) // 5秒切換一次
-
-    return () => clearInterval(timer)
-  }, [heroSlides.length])
-
-  const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % heroSlides.length)
-  }
-
-  const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + heroSlides.length) % heroSlides.length)
-  }
-
-  const goToSlide = (index: number) => {
-    setCurrentSlide(index)
-  }
 
   return (
     <div className="min-h-screen">
-      {/* Hero Carousel Section */}
-      <section className="relative h-screen overflow-hidden">
-        {/* Background Images */}
-        {heroSlides.map((slide, index) => (
-          <div
-            key={slide.id}
-            className={`absolute inset-0 transition-opacity duration-1000 ${
-              index === currentSlide ? 'opacity-100' : 'opacity-0'
-            }`}
-          >
-            {/* Background Image */}
-            <div 
-              className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-              style={{
-                backgroundImage: `url(${slide.image})`,
-              }}
-            />
-            
-            {/* Gradient Overlay */}
-            <div className={`absolute inset-0 bg-gradient-to-br ${slide.bgGradient} opacity-85`} />
-            
-            {/* Background Elements */}
-            <div className="absolute inset-0">
-              <div className="absolute top-20 left-10 w-72 h-72 bg-white/10 rounded-full blur-3xl animate-pulse"></div>
-              <div className="absolute bottom-20 right-10 w-96 h-96 bg-yellow-400/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
-              <div className="absolute top-40 right-1/3 w-64 h-64 bg-pink-400/10 rounded-full blur-3xl animate-pulse delay-500"></div>
-            </div>
-          </div>
-        ))}
-
-        {/* Content */}
-        <div className="relative z-10 h-full flex items-center">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-            <div className="text-center">
-              {/* Badge */}
-              <div className="inline-flex items-center bg-white/20 backdrop-blur-sm text-white px-6 py-3 rounded-full text-sm font-medium mb-8 border border-white/20 animate-fade-in">
-                <Star className="w-4 h-4 mr-2 text-yellow-300" />
-                {heroSlides[currentSlide].badge}
-              </div>
-              
-              {/* Main Title */}
-              <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight animate-slide-up">
-                {heroSlides[currentSlide].title}
-                <span className="block bg-gradient-to-r from-yellow-300 to-pink-300 bg-clip-text text-transparent">
-                  {heroSlides[currentSlide].subtitle}
-                </span>
-              </h1>
-              
-              {/* Description */}
-              <p className="text-xl md:text-2xl text-white/90 mb-10 max-w-4xl mx-auto leading-relaxed animate-fade-in-up">
-                {heroSlides[currentSlide].description}
-              </p>
-              
-              {/* CTA Buttons */}
-              <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16 animate-fade-in-up">
-                <Link
-                  to="/courses"
-                  className="group bg-white text-blue-600 px-8 py-4 rounded-xl text-lg font-semibold hover:bg-gray-50 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
-                >
-                  <span className="flex items-center justify-center">
-                    開始學習
-                    <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                  </span>
-                </Link>
-                <button className="group bg-white/10 backdrop-blur-sm text-white border-2 border-white/30 px-8 py-4 rounded-xl text-lg font-semibold hover:bg-white/20 transition-all duration-300">
-                  <span className="flex items-center justify-center">
-                    <Play className="mr-2 w-5 h-5" />
-                    觀看介紹影片
-                  </span>
-                </button>
-              </div>
-              
-              {/* Stats */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-3xl mx-auto animate-fade-in-up">
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-white mb-2">10,000+</div>
-                  <div className="text-white/80">學習者</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-white mb-2">50+</div>
-                  <div className="text-white/80">實戰專案</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-white mb-2">95%</div>
-                  <div className="text-white/80">滿意度</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Navigation Arrows */}
-        <button
-          onClick={prevSlide}
-          className="absolute left-6 top-1/2 transform -translate-y-1/2 z-20 bg-white/20 backdrop-blur-sm text-white p-3 rounded-full hover:bg-white/30 transition-all duration-300 group"
-        >
-          <ChevronLeft className="w-6 h-6 group-hover:-translate-x-1 transition-transform" />
-        </button>
-        
-        <button
-          onClick={nextSlide}
-          className="absolute right-6 top-1/2 transform -translate-y-1/2 z-20 bg-white/20 backdrop-blur-sm text-white p-3 rounded-full hover:bg-white/30 transition-all duration-300 group"
-        >
-          <ChevronRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
-        </button>
-
-        {/* Dots Indicator */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20 flex space-x-3">
-          {heroSlides.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => goToSlide(index)}
-              className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                index === currentSlide 
-                  ? 'bg-white scale-125' 
-                  : 'bg-white/50 hover:bg-white/75'
-              }`}
-            />
-          ))}
-        </div>
-
-        {/* Progress Bar */}
-        <div className="absolute bottom-0 left-0 w-full h-1 bg-white/20">
-          <div
-            className="h-full bg-white transition-all duration-300 ease-linear"
-            style={{
-              width: `${((currentSlide + 1) / heroSlides.length) * 100}%`
-            }}
-          />
-        </div>
-      </section>
+      {/* Hero Carousel Section - 使用新的輪播組件 */}
+      <HeroCarousel />
 
       {/* What is Cursor Section */}
       <section className="py-20 bg-gray-50">
@@ -243,7 +62,7 @@ const Home: React.FC = () => {
               </div>
             </div>
 
-            {/* Right Visual */}
+            {/* Right Visual - 代碼演示 */}
             <div className="relative">
               <div className="bg-gray-900 rounded-3xl p-8 shadow-2xl">
                 <div className="flex items-center gap-2 mb-6">
@@ -407,7 +226,7 @@ const Home: React.FC = () => {
               </Link>
             </div>
 
-            {/* 中級和高級篇省略，與之前相同 */}
+            {/* Intermediate */}
             <div className="group bg-white rounded-3xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 border border-gray-100 hover:border-yellow-200 transform hover:-translate-y-2">
               <div className="flex items-center mb-6">
                 <div className="w-12 h-12 bg-gradient-to-br from-yellow-500 to-orange-600 text-white rounded-2xl flex items-center justify-center font-bold text-xl">
@@ -460,6 +279,7 @@ const Home: React.FC = () => {
               </Link>
             </div>
 
+            {/* Advanced */}
             <div className="group bg-white rounded-3xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 border border-gray-100 hover:border-red-200 transform hover:-translate-y-2">
               <div className="flex items-center mb-6">
                 <div className="w-12 h-12 bg-gradient-to-br from-red-500 to-pink-600 text-white rounded-2xl flex items-center justify-center font-bold text-xl">
@@ -534,16 +354,14 @@ const Home: React.FC = () => {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               to="/courses"
-              className="group bg-white text-blue-600 px-8 py-4 rounded-xl font-semibold hover:bg-gray-50 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+              className="group bg-white text-blue-600 px-8 py-4 rounded-xl font-semibold hover:bg-gray-50 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl inline-flex items-center justify-center"
             >
-              <span className="flex items-center justify-center">
-                立即開始學習
-                <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </span>
+              立即開始學習
+              <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </Link>
             <Link
               to="/tips"
-              className="group bg-white/10 backdrop-blur-sm text-white border-2 border-white/30 px-8 py-4 rounded-xl font-semibold hover:bg-white/20 transition-all duration-300"
+              className="group bg-white/10 backdrop-blur-sm text-white border-2 border-white/30 px-8 py-4 rounded-xl font-semibold hover:bg-white/20 transition-all duration-300 inline-flex items-center justify-center"
             >
               查看學習資源
             </Link>

@@ -49,6 +49,32 @@
   .animate-slide-in-right {
     animation: slideInRight 0.8s ease-out;
   }
+
+  /* 輪播專用動畫 */
+  .carousel-slide-enter {
+    animation: carouselSlideIn 1s ease-in-out;
+  }
+
+  .carousel-slide-exit {
+    animation: carouselSlideOut 1s ease-in-out;
+  }
+
+  /* 進度條動畫 */
+  .progress-bar {
+    transition: width 0.1s linear;
+  }
+
+  /* 懸停效果增強 */
+  .carousel-control:hover {
+    transform: scale(1.1);
+    backdrop-filter: blur(10px);
+  }
+
+  /* 無障礙焦點樣式 */
+  .carousel-control:focus {
+    outline: 2px solid rgba(255, 255, 255, 0.8);
+    outline-offset: 2px;
+  }
 }
 
 /* 動畫關鍵幀 */
@@ -102,6 +128,47 @@
   to {
     opacity: 1;
     transform: translateX(0);
+  }
+}
+
+/* 輪播動畫關鍵幀 */
+@keyframes carouselSlideIn {
+  0% {
+    opacity: 0;
+    transform: translateX(100%) scale(0.95);
+  }
+  50% {
+    opacity: 0.5;
+    transform: translateX(50%) scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+@keyframes carouselSlideOut {
+  0% {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: translateX(-50%) scale(0.98);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-100%) scale(0.95);
+  }
+}
+
+/* 脈衝效果增強 */
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.8), 0 0 30px rgba(255, 255, 255, 0.6);
   }
 }
 
