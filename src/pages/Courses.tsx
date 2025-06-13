@@ -5,58 +5,65 @@ import { Clock, Users, CheckCircle, ArrowRight } from 'lucide-react'
 const Courses: React.FC = () => {
   const courses = [
     {
-      id: 'beginner',
-      title: '初級篇',
-      subtitle: 'Cursor基礎入門',
-      duration: '1-2週',
-      students: '1,234',
+      id: 'beginer',
+      title: 'AI工具基礎',
+      subtitle: 'AI應用入門與工具認知',
+      duration: '2-3週',
+      students: '2,847',
       level: 'beginner',
       color: 'green',
-      description: '從零開始學習Cursor AI的基本操作和核心功能',
+      description: '從AI應用思維開始，掌握Cursor、ChatGPT、Claude等核心AI工具的基礎使用',
       features: [
-        'Cursor安裝與設定',
-        'AI Chat基礎使用',
-        'Tab補全技巧',
+        'AI應用思維建立',
+        'Cursor基礎操作與配置',
+        'ChatGPT高效提示技巧',
+        'Claude深度分析應用',
         '第一個AI輔助專案'
       ],
-      projects: ['HTML頁面製作', 'JavaScript互動網頁'],
-      link: '/courses/beginner'
+      projects: ['智能網頁生成', 'AI輔助代碼重構'],
+      link: '/courses/beginner',
+      improvement: '基礎效率提升40%'
     },
     {
       id: 'intermediate',
-      title: '中級篇',
-      subtitle: 'AI輔助開發進階',
-      duration: '3-4週',
-      students: '856',
+      title: 'AI工具深度整合',
+      subtitle: 'MCP協議與多AI工具鏈',
+      duration: '4-6週',
+      students: '1,653',
       level: 'intermediate',
-      color: 'yellow',
-      description: '掌握Composer功能和多檔案AI編輯技巧',
+      color: 'blue',
+      description: '深入MCP協議，建立多AI工具整合工作流程，掌握Cursor Rules深度配置',
       features: [
-        'Composer進階功能',
-        '多檔案專案管理',
-        'AI輔助除錯',
-        '代碼重構技巧'
+        'MCP協議理論與實踐',
+        'Cursor Rules深度配置',
+        '多AI工具整合策略',
+        'GitHub、Slack、PostgreSQL連接',
+        'Docker容器化MCP部署'
       ],
-      projects: ['Todo App全端開發', 'Blog系統開發'],
-      link: '/courses/intermediate'
+      projects: ['MCP服務器建立', '企業AI工作流程設計'],
+      link: '/courses/intermediate',
+      improvement: '開發效率提升126%'
     },
     {
       id: 'advanced',
-      title: '高級篇',
-      subtitle: '企業級AI開發',
+      title: '企業級AI應用',
+      subtitle: '大規模AI部署與治理',
       duration: '2-3個月',
-      students: '432',
+      students: '743',
       level: 'advanced',
-      color: 'red',
-      description: '建立完整的AI開發工作流程和企業級專案',
+      color: 'purple',
+      description: '企業級AI應用架構設計，團隊協作工作流程，AI治理與安全合規',
       features: [
-        'AI工作流程設計',
-        '微服務架構',
-        '效能優化策略',
-        '團隊協作最佳實務'
+        '企業AI架構設計',
+        'AI工作流程自動化',
+        '團隊協作最佳實務',
+        'AI安全與合規管理',
+        'ROI測量與優化',
+        '大規模AI部署策略'
       ],
-      projects: ['電商平台開發', '企業級系統開發'],
-      link: '/courses/advanced'
+      projects: ['企業AI平台設計', 'AI治理框架建立'],
+      link: '/courses/advanced',
+      improvement: '團隊生產力提升66%'
     }
   ]
 
@@ -69,19 +76,19 @@ const Courses: React.FC = () => {
         button: 'bg-green-600 hover:bg-green-700',
         text: 'text-green-600'
       },
-      yellow: {
-        bg: 'bg-yellow-50',
-        border: 'border-yellow-200', 
-        badge: 'bg-yellow-100 text-yellow-800',
-        button: 'bg-yellow-600 hover:bg-yellow-700',
-        text: 'text-yellow-600'
+      blue: {
+        bg: 'bg-blue-50',
+        border: 'border-blue-200', 
+        badge: 'bg-blue-100 text-blue-800',
+        button: 'bg-blue-600 hover:bg-blue-700',
+        text: 'text-blue-600'
       },
-      red: {
-        bg: 'bg-red-50',
-        border: 'border-red-200',
-        badge: 'bg-red-100 text-red-800', 
-        button: 'bg-red-600 hover:bg-red-700',
-        text: 'text-red-600'
+      purple: {
+        bg: 'bg-purple-50',
+        border: 'border-purple-200',
+        badge: 'bg-purple-100 text-purple-800', 
+        button: 'bg-purple-600 hover:bg-purple-700',
+        text: 'text-purple-600'
       }
     }
     return colorMap[color as keyof typeof colorMap]
@@ -93,11 +100,25 @@ const Courses: React.FC = () => {
         {/* Header */}
         <div className="text-center mb-16">
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            課程總覽
+            AI應用學習路徑
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            循序漸進的學習路徑，從Cursor基礎到企業級AI開發技能
+            從基礎AI工具到企業級應用，掌握完整的AI工具生態系統與深度技術
           </p>
+          <div className="mt-8 flex justify-center space-x-8 text-sm text-gray-600">
+            <div className="text-center">
+              <div className="text-2xl font-bold text-blue-600">5,243</div>
+              <div>學習者</div>
+            </div>
+            <div className="text-center">
+              <div className="text-2xl font-bold text-green-600">92%</div>
+              <div>完課率</div>
+            </div>
+            <div className="text-center">
+              <div className="text-2xl font-bold text-purple-600">66%</div>
+              <div>效率提升</div>
+            </div>
+          </div>
         </div>
 
         {/* Course Cards */}
@@ -132,6 +153,13 @@ const Courses: React.FC = () => {
                     <Users size={16} />
                     <span>{course.students} 學員</span>
                   </div>
+                </div>
+
+                {/* Improvement Badge */}
+                <div className="mb-4">
+                  <span className={`inline-block px-3 py-1 ${colors.bg} ${colors.text} text-sm font-medium rounded-full border ${colors.border}`}>
+                    {course.improvement}
+                  </span>
                 </div>
 
                 {/* Description */}
@@ -180,7 +208,7 @@ const Courses: React.FC = () => {
 
         {/* Learning Path Timeline */}
         <div className="bg-white rounded-xl p-8 shadow-sm">
-          <h2 className="text-2xl font-bold text-gray-900 mb-8 text-center">學習路徑規劃</h2>
+          <h2 className="text-2xl font-bold text-gray-900 mb-8 text-center">AI應用學習路徑</h2>
           <div className="max-w-4xl mx-auto">
             <div className="relative">
               {/* Timeline Line */}
@@ -193,31 +221,68 @@ const Courses: React.FC = () => {
                     <span className="text-green-600 font-bold text-lg">1</span>
                   </div>
                   <div className="pt-3">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">初級篇 (1-2週)</h3>
-                    <p className="text-gray-600">掌握Cursor基礎操作，學會AI Chat和Tab補全基本使用方法</p>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2">AI工具基礎 (2-3週)</h3>
+                    <p className="text-gray-600 mb-2">建立AI應用思維，掌握Cursor、ChatGPT、Claude等核心工具的基礎使用</p>
+                    <div className="text-sm text-green-600 font-medium">基礎效率提升40%</div>
                   </div>
                 </div>
 
                 <div className="flex items-start gap-6">
-                  <div className="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center flex-shrink-0">
-                    <span className="text-yellow-600 font-bold text-lg">2</span>
+                  <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
+                    <span className="text-blue-600 font-bold text-lg">2</span>
                   </div>
                   <div className="pt-3">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">中級篇 (3-4週)</h3>
-                    <p className="text-gray-600">深入學習Composer功能，掌握多檔案AI編輯和專案管理技巧</p>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2">AI工具深度整合 (4-6週)</h3>
+                    <p className="text-gray-600 mb-2">深入MCP協議，建立多AI工具整合工作流程，掌握Cursor Rules深度配置</p>
+                    <div className="text-sm text-blue-600 font-medium">開發效率提升126%</div>
                   </div>
                 </div>
 
                 <div className="flex items-start gap-6">
-                  <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center flex-shrink-0">
-                    <span className="text-red-600 font-bold text-lg">3</span>
+                  <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center flex-shrink-0">
+                    <span className="text-purple-600 font-bold text-lg">3</span>
                   </div>
                   <div className="pt-3">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">高級篇 (2-3個月)</h3>
-                    <p className="text-gray-600">建立完整AI開發工作流程，具備企業級專案開發能力</p>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2">企業級AI應用 (2-3個月)</h3>
+                    <p className="text-gray-600 mb-2">企業級AI應用架構設計，團隊協作工作流程，AI治理與安全合規</p>
+                    <div className="text-sm text-purple-600 font-medium">團隊生產力提升66%</div>
                   </div>
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Technology Stack */}
+        <div className="mt-16 bg-gray-900 rounded-xl p-8 text-white">
+          <h2 className="text-2xl font-bold mb-8 text-center">涵蓋技術棧</h2>
+          <div className="grid md:grid-cols-3 gap-8">
+            <div>
+              <h3 className="text-lg font-semibold mb-4 text-blue-400">AI工具生態</h3>
+              <ul className="space-y-2 text-gray-300">
+                <li>• Cursor AI Editor</li>
+                <li>• ChatGPT / GPT-4</li>
+                <li>• Claude 3.5 Sonnet</li>
+                <li>• GitHub Copilot</li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="text-lg font-semibold mb-4 text-purple-400">深度技術</h3>
+              <ul className="space-y-2 text-gray-300">
+                <li>• Model Context Protocol</li>
+                <li>• Cursor Rules配置</li>
+                <li>• MCP Server部署</li>
+                <li>• Docker容器化</li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="text-lg font-semibold mb-4 text-green-400">企業整合</h3>
+              <ul className="space-y-2 text-gray-300">
+                <li>• GitHub / GitLab整合</li>
+                <li>• Slack工作流程</li>
+                <li>• PostgreSQL連接</li>
+                <li>• CI/CD自動化</li>
+              </ul>
             </div>
           </div>
         </div>

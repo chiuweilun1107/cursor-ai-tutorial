@@ -3,34 +3,46 @@ import { Keyboard, Lightbulb, Code, Zap, AlertCircle, TrendingUp } from 'lucide-
 
 const Tips: React.FC = () => {
   const shortcuts = [
-    { keys: 'Ctrl + K', description: '開啟AI Chat' },
-    { keys: 'Ctrl + L', description: '選擇全部代碼進行AI編輯' },
-    { keys: 'Tab', description: '接受AI建議' },
-    { keys: 'Ctrl + I', description: '啟動Inline Edit' },
-    { keys: 'Ctrl + Shift + L', description: '選擇多行進行AI處理' },
-    { keys: 'Ctrl + /', description: '快速註解/取消註解' },
+    { keys: 'Ctrl + K', description: '開啟Cursor AI Chat', tool: 'Cursor' },
+    { keys: 'Ctrl + L', description: '選擇全部代碼進行AI編輯', tool: 'Cursor' },
+    { keys: 'Tab', description: '接受AI建議', tool: 'Cursor' },
+    { keys: 'Ctrl + I', description: '啟動Inline Edit', tool: 'Cursor' },
+    { keys: 'Ctrl + Shift + I', description: '啟動Composer模式', tool: 'Cursor' },
+    { keys: 'Ctrl + Shift + L', description: '選擇多行進行AI處理', tool: 'Cursor' },
+    { keys: 'Ctrl + Alt + C', description: '複製到ChatGPT', tool: 'Integration' },
+    { keys: 'Ctrl + Alt + V', description: '從Claude貼上', tool: 'Integration' },
   ]
 
   const bestPractices = [
     {
-      title: '明確描述需求',
-      description: '提供具體的功能描述和預期結果',
-      example: '建立一個React登入表單，包含email和密碼欄位，要有表單驗證'
+      title: '建立AI工具鏈策略',
+      description: '根據不同任務選擇最適合的AI工具',
+      example: 'Cursor處理代碼編輯 → ChatGPT解決技術問題 → Claude進行深度分析'
     },
     {
-      title: '提供上下文',
-      description: '說明專案類型、使用的技術棧和特殊要求',
-      example: '在Next.js專案中建立一個使用TypeScript的API路由'
+      title: '配置Cursor Rules',
+      description: '建立項目專屬的AI行為規則和編碼風格',
+      example: '在.cursorrules文件中定義項目架構、命名規範、編碼風格'
     },
     {
-      title: '分段描述複雜需求',
-      description: '將複雜功能拆分成多個小步驟',
-      example: '先建立基本組件結構，再添加狀態管理，最後加入樣式'
+      title: '使用MCP協議整合',
+      description: '透過MCP連接數據庫、API和外部服務',
+      example: '配置PostgreSQL MCP server連接開發資料庫'
     },
     {
-      title: '善用程式碼註解',
-      description: '在代碼中添加註解說明意圖，AI會根據註解生成代碼',
-      example: '// 建立一個函數計算兩個數字的平均值'
+      title: '建立AI提示詞模板',
+      description: '為常見任務建立標準化的提示詞模板',
+      example: '建立代碼審查、API文檔生成、測試用例編寫的模板'
+    },
+    {
+      title: '實施漸進式AI採用',
+      description: '從簡單任務開始，逐步擴展到複雜工作流程',
+      example: '先用於代碼補全 → 代碼生成 → 架構設計 → 系統分析'
+    },
+    {
+      title: '團隊AI協作規範',
+      description: '建立團隊共同的AI使用規範和最佳實務',
+      example: '定義AI生成代碼的審查流程和品質標準'
     }
   ]
 
@@ -56,12 +68,14 @@ const Tips: React.FC = () => {
   ]
 
   const efficiencyTips = [
-    '使用Tab快速接受AI建議',
-    '善用Ctrl+K快速開啟AI對話',
-    '定期更新和優化提示詞',
-    '學習常用的程式模式和架構',
-    '保持代碼整潔，有助AI理解',
-    '適時使用Composer處理多檔案編輯'
+    '建立.cursorrules文件定義項目規範',
+    '配置MCP服務器連接常用服務',
+    '使用AI工具鏈處理複雜任務',
+    '建立提示詞模板庫提高一致性',
+    '定期更新AI工具到最新版本',
+    '實施代碼審查確保AI生成品質',
+    '使用多AI工具交叉驗證結果',
+    '建立團隊AI使用最佳實務文檔'
   ]
 
   return (
@@ -69,10 +83,24 @@ const Tips: React.FC = () => {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">實用技巧</h1>
+          <h1 className="text-4xl font-bold text-gray-900 mb-4">AI應用實戰技巧</h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            掌握這些技巧，讓你的Cursor使用效率翻倍
+            掌握AI工具生態的深度技巧，讓你的開發效率提升126%
           </p>
+          <div className="mt-6 flex justify-center space-x-8 text-sm text-gray-600">
+            <div className="text-center">
+              <div className="text-2xl font-bold text-blue-600">40%</div>
+              <div>基礎效率提升</div>
+            </div>
+            <div className="text-center">
+              <div className="text-2xl font-bold text-green-600">126%</div>
+              <div>程式設計效能</div>
+            </div>
+            <div className="text-center">
+              <div className="text-2xl font-bold text-purple-600">66%</div>
+              <div>團隊協作效率</div>
+            </div>
+          </div>
         </div>
 
         <div className="grid lg:grid-cols-2 gap-8">
@@ -85,9 +113,16 @@ const Tips: React.FC = () => {
             <div className="space-y-4">
               {shortcuts.map((shortcut, index) => (
                 <div key={index} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                  <span className="font-mono text-sm bg-gray-200 px-2 py-1 rounded">
-                    {shortcut.keys}
-                  </span>
+                  <div className="flex items-center gap-3">
+                    <span className="font-mono text-sm bg-gray-200 px-2 py-1 rounded">
+                      {shortcut.keys}
+                    </span>
+                    <span className={`text-xs px-2 py-1 rounded-full ${
+                      shortcut.tool === 'Cursor' ? 'bg-blue-100 text-blue-800' : 'bg-purple-100 text-purple-800'
+                    }`}>
+                      {shortcut.tool}
+                    </span>
+                  </div>
                   <span className="text-gray-700">{shortcut.description}</span>
                 </div>
               ))}
@@ -117,7 +152,7 @@ const Tips: React.FC = () => {
         <div className="mt-8 bg-white rounded-xl p-6 shadow-sm">
           <div className="flex items-center gap-3 mb-6">
             <Lightbulb className="text-orange-600" size={24} />
-            <h2 className="text-2xl font-bold text-gray-900">AI提示詞最佳實務</h2>
+            <h2 className="text-2xl font-bold text-gray-900">AI應用最佳實務</h2>
           </div>
           <div className="grid md:grid-cols-2 gap-6">
             {bestPractices.map((practice, index) => (
@@ -158,34 +193,111 @@ const Tips: React.FC = () => {
           </div>
         </div>
 
-        {/* AI Prompt Examples */}
+        {/* MCP Configuration Examples */}
         <div className="mt-8 bg-white rounded-xl p-6 shadow-sm">
           <div className="flex items-center gap-3 mb-6">
-            <Code className="text-purple-600" size={24} />
-            <h2 className="text-2xl font-bold text-gray-900">優質提示詞範例</h2>
+            <Zap className="text-purple-600" size={24} />
+            <h2 className="text-2xl font-bold text-gray-900">MCP配置範例</h2>
           </div>
           <div className="space-y-6">
             <div className="bg-gray-900 rounded-lg p-6 text-green-400 font-mono text-sm">
-              <div className="text-gray-400 mb-2">// React組件建立範例</div>
+              <div className="text-gray-400 mb-2">// Claude Desktop MCP配置</div>
               <div className="text-yellow-300">
-                {`請幫我建立一個React組件，需求如下：
-1. 組件名稱：UserProfile
-2. Props: { name: string, email: string, avatar?: string }
-3. 功能：顯示用戶資料，包含頭像、姓名和email
-4. 樣式：使用Tailwind CSS，卡片式設計
-5. 頭像：如果沒有提供avatar，顯示姓名首字母`}
+                {`{
+  "mcpServers": {
+    "postgres": {
+      "command": "npx",
+      "args": [
+        "@modelcontextprotocol/server-postgres",
+        "postgresql://user:password@localhost:5432/mydb"
+      ]
+    },
+    "github": {
+      "command": "npx", 
+      "args": [
+        "@modelcontextprotocol/server-github",
+        "--token", "ghp_your_token_here"
+      ]
+    }
+  }
+}`}
               </div>
             </div>
 
             <div className="bg-gray-900 rounded-lg p-6 text-green-400 font-mono text-sm">
-              <div className="text-gray-400 mb-2">// API開發範例</div>
+              <div className="text-gray-400 mb-2">// .cursorrules 配置範例</div>
               <div className="text-yellow-300">
-                {`請幫我建立一個Node.js Express API端點：
-- 路由：POST /api/users
-- 功能：建立新用戶
-- 驗證：email格式、密碼長度至少8字元
-- 回應：成功返回用戶資料（不含密碼），失敗返回錯誤訊息
-- 資料庫：使用Prisma ORM`}
+                {`# Cursor Rules for React + TypeScript Project
+
+## 項目架構
+- 使用 React 18 + TypeScript
+- 組件放在 src/components/ 目錄
+- 頁面放在 src/pages/ 目錄
+- 工具函數放在 src/utils/ 目錄
+
+## 編碼風格
+- 使用函數式組件和 Hooks
+- 優先使用 const 聲明
+- 組件名稱使用 PascalCase
+- 文件名使用 camelCase
+
+## AI輔助規則
+- 生成代碼時自動添加 TypeScript 類型
+- 生成組件時包含 PropTypes 或 interface
+- 自動添加必要的 import 語句
+- 遵循 React 最佳實踐`}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* AI Tool Integration Examples */}
+        <div className="mt-8 bg-white rounded-xl p-6 shadow-sm">
+          <div className="flex items-center gap-3 mb-6">
+            <Code className="text-blue-600" size={24} />
+            <h2 className="text-2xl font-bold text-gray-900">AI工具整合範例</h2>
+          </div>
+          <div className="space-y-6">
+            <div className="bg-gray-900 rounded-lg p-6 text-green-400 font-mono text-sm">
+              <div className="text-gray-400 mb-2">// 多AI工具協作流程</div>
+              <div className="text-yellow-300">
+                {`// 1. 在Cursor中開始編寫代碼
+function UserDashboard() {
+  // AI: 請幫我建立一個用戶儀表板組件
+}
+
+// 2. 如果遇到複雜邏輯問題，複製到ChatGPT
+// 提問：如何實現這個功能的最佳架構？
+
+// 3. 需要深度分析時，使用Claude
+// 分析：這個設計模式的優缺點和替代方案
+
+// 4. 回到Cursor實現最終方案
+function UserDashboard() {
+  // 基於AI建議實現的最佳解決方案
+  const [userData, setUserData] = useState(null);
+  // ... 完整實現
+}`}
+              </div>
+            </div>
+
+            <div className="bg-gray-900 rounded-lg p-6 text-green-400 font-mono text-sm">
+              <div className="text-gray-400 mb-2">// 企業級AI工作流程</div>
+              <div className="text-yellow-300">
+                {`// 階段1: 需求分析 (Claude)
+分析業務需求，設計系統架構，評估技術方案
+
+// 階段2: 代碼實現 (Cursor + MCP)
+使用MCP連接數據庫，自動生成CRUD操作
+配置CI/CD流程，自動化測試
+
+// 階段3: 代碼審查 (ChatGPT)
+檢查代碼品質，識別潛在問題
+提供優化建議和安全性檢查
+
+// 階段4: 文檔生成 (Claude)
+自動生成API文檔，用戶手冊
+建立技術文檔和維護指南`}
               </div>
             </div>
           </div>
