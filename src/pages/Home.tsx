@@ -4,364 +4,262 @@ import { ArrowRight, MessageCircle, Edit3, Layers, TrendingUp, Clock, Users, Boo
 import HeroCarousel from '../components/HeroCarousel'
 
 const Home: React.FC = () => {
-
   return (
     <div className="min-h-screen">
-      {/* Hero Carousel Section - 使用新的輪播組件 */}
+      {/* Hero Carousel Section */}
       <HeroCarousel />
 
-      {/* What is Cursor Section */}
-      <section className="py-20 bg-gray-50">
+      {/* 產品特色 Section - 蘋果風格 */}
+      <section className="py-32 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              什麼是Cursor？
+          <div className="text-center mb-20">
+            <h2 className="text-5xl md:text-6xl font-bold text-gray-900 mb-8">
+              為什麼選擇 Cursor？
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Cursor是一款革命性的AI輔助程式編輯器，讓您的開發效率翻倍
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+              革命性的AI程式編輯器，重新定義開發體驗
             </p>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            {/* Left Content */}
-            <div className="space-y-8">
-              <div className="bg-white rounded-3xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 border border-gray-100">
-                <div className="flex items-start space-x-4">
-                  <div className="flex-shrink-0 w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center">
-                    <MessageCircle className="text-white" size={28} />
-                  </div>
-                  <div>
-                    <h3 className="text-2xl font-bold text-gray-900 mb-3">AI Chat</h3>
-                    <p className="text-gray-600 leading-relaxed">直接與AI對話解決程式問題，獲得即時的代碼建議和解釋，就像有個24小時的程式導師</p>
-                  </div>
-                </div>
+          <div className="grid lg:grid-cols-3 gap-16">
+            {/* AI Chat */}
+            <div className="text-center">
+              <div className="w-32 h-32 bg-gradient-to-br from-blue-500 to-purple-600 rounded-3xl flex items-center justify-center mx-auto mb-8 shadow-2xl">
+                <MessageCircle className="text-white" size={48} />
               </div>
+              <h3 className="text-3xl font-bold text-gray-900 mb-6">AI Chat</h3>
+              <p className="text-lg text-gray-600 leading-relaxed">
+                直接與AI對話解決程式問題，獲得即時的代碼建議和解釋，就像有個24小時的程式導師
+              </p>
+            </div>
 
-              <div className="bg-white rounded-3xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 border border-gray-100">
-                <div className="flex items-start space-x-4">
-                  <div className="flex-shrink-0 w-16 h-16 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-2xl flex items-center justify-center">
-                    <Edit3 className="text-white" size={28} />
-                  </div>
-                  <div>
-                    <h3 className="text-2xl font-bold text-gray-900 mb-3">Inline Edit</h3>
-                    <p className="text-gray-600 leading-relaxed">在代碼中直接進行AI修改，無需切換視窗，讓編程變得更加流暢自然</p>
-                  </div>
-                </div>
+            {/* Inline Edit */}
+            <div className="text-center">
+              <div className="w-32 h-32 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-3xl flex items-center justify-center mx-auto mb-8 shadow-2xl">
+                <Edit3 className="text-white" size={48} />
               </div>
+              <h3 className="text-3xl font-bold text-gray-900 mb-6">Inline Edit</h3>
+              <p className="text-lg text-gray-600 leading-relaxed">
+                在代碼中直接進行AI修改，無需切換視窗，讓編程變得更加流暢自然
+              </p>
+            </div>
 
-              <div className="bg-white rounded-3xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 border border-gray-100">
-                <div className="flex items-start space-x-4">
-                  <div className="flex-shrink-0 w-16 h-16 bg-gradient-to-br from-orange-500 to-red-600 rounded-2xl flex items-center justify-center">
-                    <Layers className="text-white" size={28} />
+            {/* Composer */}
+            <div className="text-center">
+              <div className="w-32 h-32 bg-gradient-to-br from-orange-500 to-red-600 rounded-3xl flex items-center justify-center mx-auto mb-8 shadow-2xl">
+                <Layers className="text-white" size={48} />
+              </div>
+              <h3 className="text-3xl font-bold text-gray-900 mb-6">Composer</h3>
+              <p className="text-lg text-gray-600 leading-relaxed">
+                AI協助多檔案編輯，理解整個專案結構，讓大型專案開發變得簡單
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 效能提升 Section */}
+      <section className="py-32 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-20 items-center">
+            
+            {/* 左側內容 */}
+            <div>
+              <h2 className="text-5xl md:text-6xl font-bold text-gray-900 mb-8 leading-tight">
+                開發效率
+                <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent block">
+                  提升 70%
+                </span>
+              </h2>
+              <p className="text-xl text-gray-600 mb-12 leading-relaxed">
+                專業開發者的選擇，讓AI成為你最得力的助手。從簡單的代碼補全到複雜的架構設計，全面提升你的開發體驗。
+              </p>
+              
+              <div className="space-y-6">
+                <div className="flex items-center">
+                  <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center mr-4">
+                    <CheckCircle className="text-white" size={16} />
                   </div>
-                  <div>
-                    <h3 className="text-2xl font-bold text-gray-900 mb-3">Composer</h3>
-                    <p className="text-gray-600 leading-relaxed">AI協助多檔案編輯，理解整個專案結構，讓大型專案開發變得簡單</p>
+                  <span className="text-lg text-gray-700">節省 70% 的代碼編寫時間</span>
+                </div>
+                <div className="flex items-center">
+                  <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center mr-4">
+                    <CheckCircle className="text-white" size={16} />
                   </div>
+                  <span className="text-lg text-gray-700">減少 90% 的文檔查找時間</span>
+                </div>
+                <div className="flex items-center">
+                  <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center mr-4">
+                    <CheckCircle className="text-white" size={16} />
+                  </div>
+                  <span className="text-lg text-gray-700">提升 50% 的代碼質量</span>
                 </div>
               </div>
             </div>
 
-            {/* Right Visual - 代碼演示 */}
+            {/* 右側圖片 */}
             <div className="relative">
-              <div className="bg-gray-900 rounded-3xl p-8 shadow-2xl">
-                <div className="flex items-center gap-2 mb-6">
-                  <div className="w-3 h-3 bg-red-500 rounded-full"></div>
-                  <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
-                  <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-                  <span className="ml-4 text-gray-400 text-sm">Cursor AI</span>
-                </div>
-                <div className="text-green-400 font-mono text-sm leading-relaxed">
-                  <div className="mb-2 text-gray-400">// AI Chat 示範</div>
-                  <div className="mb-2"><span className="text-blue-400">你:</span> 建立一個React登入表單</div>
-                  <div className="mb-4"><span className="text-purple-400">AI:</span> 我來幫你建立...</div>
-                  <div className="text-yellow-300">
-                    {`function LoginForm() {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  
-  return (
-    <form className="space-y-4">
-      <input 
-        type="email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        placeholder="電子郵件"
-        className="w-full p-3 border rounded-lg"
-      />
-      <input 
-        type="password" 
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        placeholder="密碼"
-        className="w-full p-3 border rounded-lg"
-      />
-      <button type="submit">
-        登入
-      </button>
-    </form>
-  )
-}`}
-                  </div>
-                </div>
+              <div className="aspect-square rounded-3xl overflow-hidden shadow-2xl">
+                <img
+                  src="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80"
+                  alt="開發效率提升"
+                  className="w-full h-full object-cover"
+                />
               </div>
-              {/* Floating Elements */}
-              <div className="absolute -top-4 -right-4 w-8 h-8 bg-blue-500 rounded-full animate-bounce"></div>
-              <div className="absolute -bottom-4 -left-4 w-6 h-6 bg-purple-500 rounded-full animate-bounce delay-1000"></div>
+              {/* 浮動統計卡片 */}
+              <div className="absolute -top-8 -right-8 bg-white rounded-2xl p-6 shadow-xl border border-gray-100">
+                <div className="text-3xl font-bold text-green-600 mb-2">70%</div>
+                <div className="text-sm text-gray-600">效率提升</div>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Why Learn Cursor Section */}
-      <section className="py-20 bg-white">
+      {/* 學習路徑 Section */}
+      <section className="py-32 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              為什麼選擇我們的課程？
+          <div className="text-center mb-20">
+            <h2 className="text-5xl md:text-6xl font-bold text-gray-900 mb-8">
+              學習路徑
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              在AI時代，掌握AI輔助開發工具不再是選擇，而是必須
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+              從零開始，循序漸進掌握Cursor AI的所有功能
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div className="group text-center p-8 rounded-3xl bg-gradient-to-br from-green-50 to-emerald-50 hover:from-green-100 hover:to-emerald-100 transition-all duration-300 border border-green-100">
-              <div className="w-20 h-20 bg-gradient-to-br from-green-500 to-emerald-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
-                <TrendingUp className="text-white" size={32} />
-              </div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">提升70%效率</h3>
-              <p className="text-gray-600 leading-relaxed">研究顯示使用AI輔助工具可大幅提升開發效率，讓您的工作事半功倍</p>
-            </div>
-
-            <div className="group text-center p-8 rounded-3xl bg-gradient-to-br from-blue-50 to-indigo-50 hover:from-blue-100 hover:to-indigo-100 transition-all duration-300 border border-blue-100">
-              <div className="w-20 h-20 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
-                <Clock className="text-white" size={32} />
-              </div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">節省學習時間</h3>
-              <p className="text-gray-600 leading-relaxed">不再需要頻繁查找文檔，AI即時提供答案，大幅減少開發時間</p>
-            </div>
-
-            <div className="group text-center p-8 rounded-3xl bg-gradient-to-br from-purple-50 to-violet-50 hover:from-purple-100 hover:to-violet-100 transition-all duration-300 border border-purple-100">
-              <div className="w-20 h-20 bg-gradient-to-br from-purple-500 to-violet-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
-                <Users className="text-white" size={32} />
-              </div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">AI輔助學習</h3>
-              <p className="text-gray-600 leading-relaxed">AI協助理解複雜概念，個人化學習路徑，讓學習更有效率</p>
-            </div>
-
-            <div className="group text-center p-8 rounded-3xl bg-gradient-to-br from-orange-50 to-red-50 hover:from-orange-100 hover:to-red-100 transition-all duration-300 border border-orange-100">
-              <div className="w-20 h-20 bg-gradient-to-br from-orange-500 to-red-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
-                <BookOpen className="text-white" size={32} />
-              </div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">未來技能</h3>
-              <p className="text-gray-600 leading-relaxed">專業開發者在AI時代的核心競爭力，提升職場價值</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Learning Path Preview */}
-      <section className="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              三階段完整學習路徑
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              從零開始，循序漸進掌握Cursor AI的所有功能，成為AI時代的程式高手
-            </p>
-          </div>
-
-          <div className="grid lg:grid-cols-3 gap-8">
-            {/* Beginner */}
-            <div className="group bg-white rounded-3xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 border border-gray-100 hover:border-green-200 transform hover:-translate-y-2">
-              <div className="flex items-center mb-6">
-                <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-emerald-600 text-white rounded-2xl flex items-center justify-center font-bold text-xl">
-                  1
-                </div>
-                <div className="ml-4">
-                  <h3 className="text-2xl font-bold text-gray-900">初級篇</h3>
-                  <span className="inline-block bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium mt-1">
-                    1-2週完成
-                  </span>
-                </div>
+          <div className="grid lg:grid-cols-3 gap-12">
+            {/* 初級篇 */}
+            <div className="bg-white rounded-3xl p-12 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
+              <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-600 text-white rounded-2xl flex items-center justify-center font-bold text-2xl mb-8">
+                1
               </div>
               
-              <div className="mb-6">
-                <h4 className="font-semibold text-gray-900 mb-3">學習內容：</h4>
-                <ul className="space-y-3">
-                  <li className="flex items-center text-gray-600">
-                    <CheckCircle size={16} className="text-green-500 mr-3 flex-shrink-0" />
-                    Cursor基礎操作與設定
-                  </li>
-                  <li className="flex items-center text-gray-600">
-                    <CheckCircle size={16} className="text-green-500 mr-3 flex-shrink-0" />
-                    AI Chat基礎使用技巧
-                  </li>
-                  <li className="flex items-center text-gray-600">
-                    <CheckCircle size={16} className="text-green-500 mr-3 flex-shrink-0" />
-                    Tab補全功能掌握
-                  </li>
-                  <li className="flex items-center text-gray-600">
-                    <CheckCircle size={16} className="text-green-500 mr-3 flex-shrink-0" />
-                    第一個AI輔助專案
-                  </li>
-                </ul>
-              </div>
-
-              <div className="mb-6">
-                <div className="flex flex-wrap gap-2">
-                  <span className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">HTML網頁</span>
-                  <span className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">JavaScript</span>
+              <h3 className="text-3xl font-bold text-gray-900 mb-4">初級篇</h3>
+              <p className="text-gray-600 mb-8 leading-relaxed">
+                掌握Cursor基礎操作，學會AI Chat和Tab補全功能，完成第一個AI輔助專案。
+              </p>
+              
+              <div className="space-y-4 mb-10">
+                <div className="flex items-center text-gray-600">
+                  <CheckCircle size={20} className="text-green-500 mr-3" />
+                  Cursor基礎操作與設定
+                </div>
+                <div className="flex items-center text-gray-600">
+                  <CheckCircle size={20} className="text-green-500 mr-3" />
+                  AI Chat基礎使用技巧
+                </div>
+                <div className="flex items-center text-gray-600">
+                  <CheckCircle size={20} className="text-green-500 mr-3" />
+                  Tab補全功能掌握
                 </div>
               </div>
 
               <Link 
                 to="/courses/beginner" 
-                className="block w-full bg-gradient-to-r from-green-500 to-emerald-600 text-white text-center py-3 rounded-xl font-semibold hover:from-green-600 hover:to-emerald-700 transition-all duration-300 group-hover:shadow-lg"
+                className="block w-full bg-gradient-to-r from-green-500 to-emerald-600 text-white text-center py-4 rounded-xl font-semibold hover:shadow-lg transition-all duration-300"
               >
                 開始學習
-                <ArrowRight size={16} className="inline ml-2" />
               </Link>
             </div>
 
-            {/* Intermediate */}
-            <div className="group bg-white rounded-3xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 border border-gray-100 hover:border-yellow-200 transform hover:-translate-y-2">
-              <div className="flex items-center mb-6">
-                <div className="w-12 h-12 bg-gradient-to-br from-yellow-500 to-orange-600 text-white rounded-2xl flex items-center justify-center font-bold text-xl">
-                  2
-                </div>
-                <div className="ml-4">
-                  <h3 className="text-2xl font-bold text-gray-900">中級篇</h3>
-                  <span className="inline-block bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-sm font-medium mt-1">
-                    3-4週完成
-                  </span>
-                </div>
+            {/* 中級篇 */}
+            <div className="bg-white rounded-3xl p-12 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
+              <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-indigo-600 text-white rounded-2xl flex items-center justify-center font-bold text-2xl mb-8">
+                2
               </div>
               
-              <div className="mb-6">
-                <h4 className="font-semibold text-gray-900 mb-3">學習內容：</h4>
-                <ul className="space-y-3">
-                  <li className="flex items-center text-gray-600">
-                    <CheckCircle size={16} className="text-yellow-500 mr-3 flex-shrink-0" />
-                    Composer進階功能
-                  </li>
-                  <li className="flex items-center text-gray-600">
-                    <CheckCircle size={16} className="text-yellow-500 mr-3 flex-shrink-0" />
-                    多檔案AI專案管理
-                  </li>
-                  <li className="flex items-center text-gray-600">
-                    <CheckCircle size={16} className="text-yellow-500 mr-3 flex-shrink-0" />
-                    AI輔助除錯技巧
-                  </li>
-                  <li className="flex items-center text-gray-600">
-                    <CheckCircle size={16} className="text-yellow-500 mr-3 flex-shrink-0" />
-                    全端專案開發
-                  </li>
-                </ul>
-              </div>
-
-              <div className="mb-6">
-                <div className="flex flex-wrap gap-2">
-                  <span className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">React</span>
-                  <span className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">Node.js</span>
-                  <span className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">資料庫</span>
+              <h3 className="text-3xl font-bold text-gray-900 mb-4">中級篇</h3>
+              <p className="text-gray-600 mb-8 leading-relaxed">
+                學習Composer進階功能，掌握多檔案AI專案管理和除錯技巧。
+              </p>
+              
+              <div className="space-y-4 mb-10">
+                <div className="flex items-center text-gray-600">
+                  <CheckCircle size={20} className="text-blue-500 mr-3" />
+                  Composer進階功能
+                </div>
+                <div className="flex items-center text-gray-600">
+                  <CheckCircle size={20} className="text-blue-500 mr-3" />
+                  多檔案AI專案管理
+                </div>
+                <div className="flex items-center text-gray-600">
+                  <CheckCircle size={20} className="text-blue-500 mr-3" />
+                  AI輔助除錯技巧
                 </div>
               </div>
 
               <Link 
                 to="/courses/intermediate" 
-                className="block w-full bg-gradient-to-r from-yellow-500 to-orange-600 text-white text-center py-3 rounded-xl font-semibold hover:from-yellow-600 hover:to-orange-700 transition-all duration-300 group-hover:shadow-lg"
+                className="block w-full bg-gradient-to-r from-blue-500 to-indigo-600 text-white text-center py-4 rounded-xl font-semibold hover:shadow-lg transition-all duration-300"
               >
                 查看課程
-                <ArrowRight size={16} className="inline ml-2" />
               </Link>
             </div>
 
-            {/* Advanced */}
-            <div className="group bg-white rounded-3xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 border border-gray-100 hover:border-red-200 transform hover:-translate-y-2">
-              <div className="flex items-center mb-6">
-                <div className="w-12 h-12 bg-gradient-to-br from-red-500 to-pink-600 text-white rounded-2xl flex items-center justify-center font-bold text-xl">
-                  3
-                </div>
-                <div className="ml-4">
-                  <h3 className="text-2xl font-bold text-gray-900">高級篇</h3>
-                  <span className="inline-block bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm font-medium mt-1">
-                    2-3個月
-                  </span>
-                </div>
+            {/* 高級篇 */}
+            <div className="bg-white rounded-3xl p-12 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
+              <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-600 text-white rounded-2xl flex items-center justify-center font-bold text-2xl mb-8">
+                3
               </div>
               
-              <div className="mb-6">
-                <h4 className="font-semibold text-gray-900 mb-3">學習內容：</h4>
-                <ul className="space-y-3">
-                  <li className="flex items-center text-gray-600">
-                    <CheckCircle size={16} className="text-red-500 mr-3 flex-shrink-0" />
-                    AI工作流程設計
-                  </li>
-                  <li className="flex items-center text-gray-600">
-                    <CheckCircle size={16} className="text-red-500 mr-3 flex-shrink-0" />
-                    企業級開發技巧
-                  </li>
-                  <li className="flex items-center text-gray-600">
-                    <CheckCircle size={16} className="text-red-500 mr-3 flex-shrink-0" />
-                    系統架構設計
-                  </li>
-                  <li className="flex items-center text-gray-600">
-                    <CheckCircle size={16} className="text-red-500 mr-3 flex-shrink-0" />
-                    大型專案管理
-                  </li>
-                </ul>
-              </div>
-
-              <div className="mb-6">
-                <div className="flex flex-wrap gap-2">
-                  <span className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">微服務</span>
-                  <span className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">Docker</span>
-                  <span className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">CI/CD</span>
+              <h3 className="text-3xl font-bold text-gray-900 mb-4">高級篇</h3>
+              <p className="text-gray-600 mb-8 leading-relaxed">
+                掌握AI工作流程設計，學習企業級開發技巧和系統架構設計。
+              </p>
+              
+              <div className="space-y-4 mb-10">
+                <div className="flex items-center text-gray-600">
+                  <CheckCircle size={20} className="text-purple-500 mr-3" />
+                  AI工作流程設計
+                </div>
+                <div className="flex items-center text-gray-600">
+                  <CheckCircle size={20} className="text-purple-500 mr-3" />
+                  企業級開發技巧
+                </div>
+                <div className="flex items-center text-gray-600">
+                  <CheckCircle size={20} className="text-purple-500 mr-3" />
+                  系統架構設計
                 </div>
               </div>
 
               <Link 
                 to="/courses/advanced" 
-                className="block w-full bg-gradient-to-r from-red-500 to-pink-600 text-white text-center py-3 rounded-xl font-semibold hover:from-red-600 hover:to-pink-700 transition-all duration-300 group-hover:shadow-lg"
+                className="block w-full bg-gradient-to-r from-purple-500 to-pink-600 text-white text-center py-4 rounded-xl font-semibold hover:shadow-lg transition-all duration-300"
               >
                 查看課程
-                <ArrowRight size={16} className="inline ml-2" />
               </Link>
             </div>
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 relative overflow-hidden">
-        {/* Background Elements */}
+      {/* CTA Section - 蘋果風格 */}
+      <section className="py-32 bg-gray-900 relative overflow-hidden">
+        {/* 背景裝飾 */}
         <div className="absolute inset-0">
-          <div className="absolute top-0 left-0 w-full h-full bg-black/20"></div>
-          <div className="absolute top-10 left-10 w-32 h-32 bg-white/10 rounded-full blur-2xl animate-pulse"></div>
-          <div className="absolute bottom-10 right-10 w-48 h-48 bg-yellow-400/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
+          <div className="absolute top-20 left-20 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-20 right-20 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl"></div>
         </div>
         
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-            準備好開始你的AI開發之旅了嗎？
+        <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-5xl md:text-6xl font-bold text-white mb-8 leading-tight">
+            準備好開始了嗎？
           </h2>
-          <p className="text-xl text-white/90 mb-10 max-w-3xl mx-auto">
-            加入我們的學習社群，與10,000+開發者一起成長，掌握未來的核心技能
+          <p className="text-xl text-gray-300 mb-12 leading-relaxed">
+            加入我們，掌握AI時代的核心技能
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          
+          <div className="flex flex-col sm:flex-row gap-6 justify-center">
             <Link
               to="/courses"
-              className="group bg-white text-blue-600 px-8 py-4 rounded-xl font-semibold hover:bg-gray-50 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl inline-flex items-center justify-center"
+              className="bg-white text-gray-900 px-12 py-5 rounded-xl text-lg font-semibold hover:bg-gray-100 transition-all duration-300 shadow-xl"
             >
               立即開始學習
-              <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </Link>
             <Link
               to="/tips"
-              className="group bg-white/10 backdrop-blur-sm text-white border-2 border-white/30 px-8 py-4 rounded-xl font-semibold hover:bg-white/20 transition-all duration-300 inline-flex items-center justify-center"
+              className="border-2 border-white/30 text-white px-12 py-5 rounded-xl text-lg font-semibold hover:bg-white/10 transition-all duration-300"
             >
               查看學習資源
             </Link>
