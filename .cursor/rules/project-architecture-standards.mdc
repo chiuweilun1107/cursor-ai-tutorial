@@ -1,5 +1,329 @@
 ---
-description:
-globs:
-alwaysApply: false
+description: 
+globs: 
+alwaysApply: true
 ---
+# 專案架構與編碼規範 - CursorLearning Platform
+
+## 📁 目錄架構規範
+
+### **根目錄結構**
+```
+CursorLearning/
+├── .cursor/                  # Cursor IDE 配置
+│   └── rules/               # AI 操作規範文件
+├── src/                     # 主要源代碼
+├── public/                  # 靜態資源
+├── dist/                    # 構建輸出
+├── node_modules/            # 依賴包
+├── package.json             # 項目配置
+├── vite.config.ts          # Vite 配置
+├── tsconfig.json           # TypeScript 配置
+├── tailwind.config.js      # Tailwind CSS 配置
+└── README.md               # 項目說明
+```
+
+### **src/ 目錄架構標準**
+```
+src/
+├── components/              # 可重用組件
+│   ├── common/             # 通用組件
+│   ├── course/             # 課程相關組件
+│   ├── layout/             # 佈局組件
+│   └── ui/                 # 基礎 UI 組件
+├── pages/                  # 頁面組件
+│   ├── lessons/            # 課程頁面子目錄
+│   └── profile/            # 用戶檔案頁面
+├── data/                   # 數據文件
+│   ├── courses/            # 課程數據
+│   ├── lessons/            # 課程內容
+│   └── progress/           # 學習進度
+├── hooks/                  # 自定義 React Hooks
+├── stores/                 # 狀態管理
+├── utils/                  # 工具函數
+├── types/                  # TypeScript 類型定義
+├── assets/                 # 靜態資源
+├── App.tsx                 # 主應用組件
+└── main.tsx               # 應用入口點
+```
+
+## 📋 文件命名規範
+
+### **組件文件命名**
+- **React 組件**: PascalCase + `.tsx` 擴展名
+  - ✅ 正確: `HeroCarousel.tsx`, `CourseDetail.tsx`
+  - ❌ 錯誤: `heroCarousel.tsx`, `course-detail.tsx`
+
+- **頁面組件**: PascalCase + 描述性名稱
+  - ✅ 正確: `MCPCourse.tsx`, `LessonViewer.tsx`
+  - ❌ 錯誤: `mcp.tsx`, `lesson.tsx`
+
+### **工具函數與配置**
+- **工具文件**: camelCase + `.ts` 擴展名
+  - ✅ 正確: `imageAssets.ts`, `pathManager.ts`
+  - ❌ 錯誤: `ImageAssets.ts`, `path_manager.ts`
+
+- **類型定義**: `index.ts` 或描述性名稱
+  - ✅ 正確: `index.ts`, `course.types.ts`
+
+### **數據文件命名**
+- **JSON 數據**: kebab-case + 版本或分類
+  - ✅ 正確: `all-courses.json`, `stage1-lessons.json`
+  - ❌ 錯誤: `courses.json`, `lessons1.json`
+
+- **備份文件**: 原名稱 + `-backup`
+  - ✅ 正確: `stage1-lessons-backup.json`
+
+## 💻 程式編碼規範
+
+### **TypeScript 編碼標準**
+
+#### **1. 組件結構**
+```typescript
+// ✅ 正確的組件結構
+import React, { useState, useEffect } from 'react';
+import { ComponentProps } from '../types';
+
+interface Props {
+  title: string;
+  isActive?: boolean;
+  onAction: () => void;
+}
+
+export const MyComponent: React.FC<Props> = ({ 
+  title, 
+  isActive = false, 
+  onAction 
+}) => {
+  const [loading, setLoading] = useState(false);
+  
+  useEffect(() => {
+    // 副作用邏輯
+  }, []);
+
+  return (
+    <div className="component-container">
+      <h2>{title}</h2>
+    </div>
+  );
+};
+
+export default MyComponent;
+```
+
+#### **2. 類型定義規範**
+```typescript
+// ✅ 正確的類型定義
+export interface Course {
+  id: string;
+  title: string;
+  description: string;
+  duration: number;
+  isCompleted: boolean;
+  tags: string[];
+}
+
+export type CourseStatus = 'draft' | 'published' | 'archived';
+
+// Union types 使用明確的值
+export type Theme = 'light' | 'dark' | 'auto';
+```
+
+#### **3. 函數命名規範**
+```typescript
+// ✅ 正確的函數命名
+const handleSubmit = () => {};
+const validateEmail = (email: string) => {};
+const getCourseById = (id: string) => {};
+const useLocalStorage = () => {}; // Hooks 以 use 開頭
+
+// ❌ 錯誤的函數命名
+const submit = () => {}; // 不夠描述性
+const email_validate = () => {}; // 使用下劃線
+const GetCourse = () => {}; // 非組件函數使用 PascalCase
+```
+
+### **CSS/Tailwind 規範**
+
+#### **1. 類名組織**
+```typescript
+// ✅ 正確的 Tailwind 類名組織
+<div className={`
+  flex items-center justify-between
+  p-4 rounded-lg shadow-md
+  bg-white hover:bg-gray-50
+  transition-colors duration-200
+`}>
+```
+
+#### **2. 響應式設計**
+```typescript
+// ✅ 正確的響應式類名
+<div className="
+  grid grid-cols-1 gap-4
+  md:grid-cols-2 md:gap-6
+  lg:grid-cols-3 lg:gap-8
+">
+```
+
+## 🏗️ 架構設計原則
+
+### **1. 關注點分離**
+- **組件**: 只負責 UI 呈現和用戶交互
+- **Hooks**: 處理狀態邏輯和副作用
+- **Utils**: 提供純函數工具
+- **Stores**: 管理全域狀態
+
+### **2. 可重用性**
+```typescript
+// ✅ 可重用的 UI 組件
+export const Button: React.FC<ButtonProps> = ({
+  variant = 'primary',
+  size = 'medium',
+  children,
+  ...props
+}) => {
+  const baseClasses = 'font-medium rounded-lg transition-colors';
+  const variantClasses = {
+    primary: 'bg-blue-600 hover:bg-blue-700 text-white',
+    secondary: 'bg-gray-200 hover:bg-gray-300 text-gray-900'
+  };
+  
+  return (
+    <button 
+      className={`${baseClasses} ${variantClasses[variant]}`}
+      {...props}
+    >
+      {children}
+    </button>
+  );
+};
+```
+
+### **3. 錯誤處理**
+```typescript
+// ✅ 正確的錯誤處理
+const fetchCourseData = async (courseId: string): Promise<Course | null> => {
+  try {
+    const response = await fetch(`/api/courses/${courseId}`);
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    return await response.json();
+  } catch (error) {
+    console.error('Failed to fetch course:', error);
+    return null;
+  }
+};
+```
+
+## 📝 註釋與文檔規範
+
+### **1. JSDoc 注釋**
+```typescript
+/**
+ * 計算課程完成進度百分比
+ * @param completedLessons - 已完成課程數量
+ * @param totalLessons - 總課程數量
+ * @returns 進度百分比 (0-100)
+ */
+export const calculateProgress = (
+  completedLessons: number, 
+  totalLessons: number
+): number => {
+  if (totalLessons === 0) return 0;
+  return Math.round((completedLessons / totalLessons) * 100);
+};
+```
+
+### **2. 組件文檔**
+```typescript
+/**
+ * 課程卡片組件
+ * 
+ * @example
+ * <CourseCard 
+ *   course={courseData}
+ *   onEnroll={handleEnroll}
+ *   isEnrolled={userEnrollments.includes(courseData.id)}
+ * />
+ */
+export const CourseCard: React.FC<CourseCardProps> = ({ ... }) => {
+  // 組件實現
+};
+```
+
+## 🚀 性能優化規範
+
+### **1. 代碼分割**
+```typescript
+// ✅ 使用動態導入進行代碼分割
+const CourseDetail = lazy(() => import('./pages/CourseDetail'));
+const LessonViewer = lazy(() => import('./pages/LessonViewer'));
+```
+
+### **2. 圖片優化**
+```typescript
+// ✅ 正確的圖片處理
+export const optimizedImageUrl = (url: string, width: number, height: number) => {
+  return `${url}?w=${width}&h=${height}&fit=crop&crop=center`;
+};
+```
+
+## 🔍 測試規範
+
+### **1. 測試文件命名**
+- 組件測試: `ComponentName.test.tsx`
+- 工具函數測試: `utilityName.test.ts`
+- Hook 測試: `useHookName.test.ts`
+
+### **2. 測試結構**
+```typescript
+describe('CourseCard', () => {
+  it('should render course title correctly', () => {
+    // 測試實現
+  });
+  
+  it('should handle enrollment click', () => {
+    // 測試實現
+  });
+});
+```
+
+## ⚡ 建構和部署規範
+
+### **1. 環境變數**
+```bash
+# ✅ 正確的環境變數命名
+VITE_API_BASE_URL=https://api.example.com
+VITE_APP_VERSION=1.0.0
+VITE_ANALYTICS_ID=ga-123456
+```
+
+### **2. 建構優化**
+```typescript
+// vite.config.ts 優化配置
+export default defineConfig({
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vendor: ['react', 'react-dom'],
+          ui: ['lucide-react']
+        }
+      }
+    }
+  }
+});
+```
+
+## 📚 參考資源
+
+- [React TypeScript 最佳實踐](mdc:https:/react-typescript-cheatsheet.netlify.app)
+- [Tailwind CSS 官方文檔](mdc:https:/tailwindcss.com/docs)
+- [Vite 配置指南](mdc:https:/vitejs.dev/config)
+- [TypeScript 風格指南](mdc:https:/ts.dev/style)
+
+---
+
+**遵循這些規範可以確保代碼品質、可維護性和團隊協作效率。**

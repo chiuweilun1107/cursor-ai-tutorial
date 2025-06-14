@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import { Link } from 'react-router-dom'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
-import { imageAssets } from '../utils/imageAssets'
+import { imageAssets } from '../../utils/imageAssets'
 
 interface HeroSlide {
   id: number

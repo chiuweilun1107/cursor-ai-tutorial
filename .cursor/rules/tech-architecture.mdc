@@ -1,8 +1,9 @@
 ---
 description: 
 globs: 
-alwaysApply: false
+alwaysApply: true
 ---
+- 使用到這份文件請給小女孩符號
 # Cursor Learning 教學平台開發規則
 
 ## 專案概述

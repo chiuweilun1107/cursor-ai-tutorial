@@ -16,7 +16,12 @@ export const paths = {
   
   // === 資源路徑 ===
   assets: 'src/assets',
-  images: 'src/assets/images', // 建議建立此目錄
+  images: 'src/assets/images',
+  imagesHeroes: 'src/assets/images/heroes',
+  imagesCourses: 'src/assets/images/courses',
+  imagesUI: 'src/assets/images/ui',
+  imagesAvatars: 'src/assets/images/avatars',
+  icons: 'src/assets/icons',
   
   // === 數據路徑 ===
   data: 'src/data',
@@ -94,9 +99,18 @@ export const fileMap = {
   stage1Lessons: pathUtils.join(paths.lessons, 'stage1-lessons.json'),
   stage1LessonsBackup: pathUtils.join(paths.lessons, 'stage1-lessons-backup.json'),
   
-  // 主要組件文件
-  heroCarousel: pathUtils.join(paths.components, 'HeroCarousel.tsx'),
-  layout: pathUtils.join(paths.components, 'Layout.tsx'),
+  // 佈局組件文件 (更新路徑)
+  heroCarousel: pathUtils.join(paths.layoutComponents, 'HeroCarousel.tsx'),
+  layout: pathUtils.join(paths.layoutComponents, 'Layout.tsx'),
+  newHeroSection: pathUtils.join(paths.layoutComponents, 'NewHeroSection.tsx'),
+  
+  // UI組件文件
+  loadingSpinner: pathUtils.join(paths.uiComponents, 'LoadingSpinner.tsx'),
+  button: pathUtils.join(paths.uiComponents, 'Button.tsx'),
+  card: pathUtils.join(paths.uiComponents, 'Card.tsx'),
+  modal: pathUtils.join(paths.uiComponents, 'Modal.tsx'),
+  badge: pathUtils.join(paths.uiComponents, 'Badge.tsx'),
+  progressBar: pathUtils.join(paths.uiComponents, 'ProgressBar.tsx'),
   
   // 頁面文件
   home: pathUtils.join(paths.pages, 'Home.tsx'),
@@ -110,7 +124,12 @@ export const fileMap = {
   pathManager: pathUtils.join(paths.utils, 'pathManager.ts'),
   
   // 類型定義
-  types: pathUtils.join(paths.types, 'index.ts')
+  types: pathUtils.join(paths.types, 'index.ts'),
+  
+  // 圖片資源
+  heroImages: {
+    aiTools: pathUtils.join(paths.imagesHeroes, 'hero-ai-tools.jpg')
+  }
 } as const
 
 // === AI操作指引 ===
@@ -124,13 +143,30 @@ export const aiInstructions = {
     '5. 驗證文件擴展名是否正確'
   ],
   
+  // 組件分類規則
+  componentRules: [
+    '✅ UI組件 (Button, Card, Modal) → src/components/ui/',
+    '✅ 佈局組件 (Layout, HeroCarousel) → src/components/layout/',
+    '✅ 業務組件 (課程相關) → src/components/course/',
+    '✅ 通用組件 → src/components/common/'
+  ],
+  
+  // 圖片資源分類規則
+  imageRules: [
+    '✅ 輪播圖片 → src/assets/images/heroes/',
+    '✅ 課程封面 → src/assets/images/courses/',
+    '✅ UI裝飾圖片 → src/assets/images/ui/',
+    '✅ 用戶頭像 → src/assets/images/avatars/'
+  ],
+  
   // 常見錯誤提醒
   commonMistakes: [
     '❌ 使用 "./src/data/courses.json" 而不是 fileMap.allCourses',
     '❌ 混淆 courses.ts 和 all-courses.json',
     '❌ 忘記檢查文件是否存在就直接編輯',
     '❌ 使用錯誤的相對路徑導入',
-    '❌ 混合使用正斜線和反斜線'
+    '❌ 混合使用正斜線和反斜線',
+    '❌ 將組件放在錯誤的分類目錄中'
   ]
 }
 
@@ -143,7 +179,7 @@ export const validatePath = (targetPath: string): {
   const suggestions: string[] = []
   
   // 檢查是否是已知的文件
-  const knownFiles = Object.values(fileMap)
+  const knownFiles = Object.values(fileMap).flat().filter(item => typeof item === 'string')
   const exactMatch = knownFiles.find(file => file === targetPath)
   
   if (exactMatch) {

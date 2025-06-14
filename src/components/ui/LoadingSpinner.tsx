@@ -1,6 +1,6 @@
 import React from 'react'
 
-interface LoadingSpinnerProps {
+export interface LoadingSpinnerProps {
   size?: 'sm' | 'md' | 'lg'
   color?: 'primary' | 'gray' | 'white'
   className?: string

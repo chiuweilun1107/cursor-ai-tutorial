@@ -27,8 +27,8 @@ const courseImages = {
   // 全端開發能力
   beginner: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=800&h=600&fit=crop&crop=center', // MacBook with code
 
-  // AI工具熟練（用戶提供本地圖片）
-  aiToolsExpert: '/images/ai-tools-expert.jpg', // 用戶提供
+  // AI工具熟練（本地圖片）
+  aiToolsExpert: '/src/assets/images/heroes/hero-ai-tools.jpg', // 本地圖片
 
   // 企業級技能
   advanced: 'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?w=800&h=600&fit=crop&crop=center', // 多螢幕現代辦公室
@@ -70,7 +70,19 @@ const mcpImages = {
   integration: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop&crop=center', // 多工具整合
   
   // 開發實戰 - 程式開發
-  development: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800&h=600&fit=crop&crop=center' // 程式開發
+  development: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800&h=600&fit=crop&crop=center', // 程式開發
+  
+  // 功能特色1 - AI協作
+  feature1: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=600&fit=crop&crop=center', // AI機器人協作
+  
+  // 功能特色2 - 高效開發
+  feature2: 'https://images.unsplash.com/photo-1504639725590-34d0984388bd?w=800&h=600&fit=crop&crop=center', // 高效開發環境
+  
+  // 功能特色3 - 智能整合
+  feature3: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800&h=600&fit=crop&crop=center', // 智能技術整合
+  
+  // 用戶見證
+  testimonial: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=600&fit=crop&crop=center' // 團隊成功案例
 }
 
 // ===== 投影片專用圖片 - 教學內容主題 =====

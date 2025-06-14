@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowRight, MessageCircle, Edit3, Layers, TrendingUp, Clock, Users, BookOpen, CheckCircle, Code, DollarSign } from 'lucide-react'
-import HeroCarousel from '../components/HeroCarousel'
+import HeroCarousel from '../components/layout/HeroCarousel'
 import LearningPathSection from '../components/course/LearningPathSection'
 
 const Home: React.FC = () => {

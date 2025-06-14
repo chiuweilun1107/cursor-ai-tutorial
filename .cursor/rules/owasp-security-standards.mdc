@@ -1,5 +1,559 @@
 ---
-description:
-globs:
-alwaysApply: false
+description: 
+globs: 
+alwaysApply: true
 ---
+# OWASP Top 10 安全規範 - CursorLearning Platform
+
+## 🔐 核心安全原則
+
+基於 OWASP Top 10 和最佳實踐，本文檔定義了前端應用程式的安全開發規範。
+
+## 📊 OWASP Top 10 2021 對應措施
+
+### **A01:2021 – 存取控制失效 (Broken Access Control)**
+
+#### **前端防護措施**
+```typescript
+// ✅ 正確的路由保護
+import { Navigate } from 'react-router-dom';
+
+const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const { user, isAuthenticated } = useAuth();
+  
+  if (!isAuthenticated) {
+    return <Navigate to="/login" replace />;
+  }
+  
+  return <>{children}</>;
+};
+
+// ✅ 角色基礎存取控制
+const AdminRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const { user } = useAuth();
+  
+  if (!user?.roles?.includes('admin')) {
+    return <Navigate to="/unauthorized" replace />;
+  }
+  
+  return <>{children}</>;
+};
+```
+
+#### **API 呼叫安全**
+```typescript
+// ✅ 安全的 API 請求
+const apiClient = axios.create({
+  baseURL: import.meta.env.VITE_API_BASE_URL,
+  timeout: 10000,
+});
+
+// 自動附加認證 Token
+apiClient.interceptors.request.use((config) => {
+  const token = localStorage.getItem('authToken');
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+  return config;
+});
+
+// 處理認證失效
+apiClient.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (error.response?.status === 401) {
+      // 清除本地認證資訊並重定向
+      localStorage.removeItem('authToken');
+      window.location.href = '/login';
+    }
+    return Promise.reject(error);
+  }
+);
+```
+
+### **A02:2021 – 加密失效 (Cryptographic Failures)**
+
+#### **敏感資料處理**
+```typescript
+// ✅ 正確的敏感資料處理
+class SecureStorage {
+  private static readonly ENCRYPTION_KEY = 'your-secret-key';
+  
+  // 避免在 localStorage 存儲敏感資料
+  static setSecureItem(key: string, value: string): void {
+    // 使用 sessionStorage 而非 localStorage 存儲敏感資料
+    sessionStorage.setItem(key, btoa(value)); // 基本編碼，實際應使用更強的加密
+  }
+  
+  static getSecureItem(key: string): string | null {
+    const encoded = sessionStorage.getItem(key);
+    return encoded ? atob(encoded) : null;
+  }
+  
+  static removeSecureItem(key: string): void {
+    sessionStorage.removeItem(key);
+  }
+}
+
+// ❌ 錯誤示例：明文存儲敏感資料
+// localStorage.setItem('token', 'my-secret-token'); // 不安全！
+```
+
+#### **HTTPS 強制使用**
+```typescript
+// ✅ 確保 HTTPS 連接
+const ensureHTTPS = () => {
+  if (location.protocol !== 'https:' && location.hostname !== 'localhost') {
+    location.replace(`https:${location.href.substring(location.protocol.length)}`);
+  }
+};
+
+// 在應用初始化時檢查
+export const App: React.FC = () => {
+  useEffect(() => {
+    ensureHTTPS();
+  }, []);
+  
+  return <Router>{/* 應用內容 */}</Router>;
+};
+```
+
+### **A03:2021 – 注入攻擊 (Injection)**
+
+#### **XSS 防護**
+```typescript
+// ✅ 正確的輸出處理
+import DOMPurify from 'dompurify';
+
+const SafeHtmlRenderer: React.FC<{ content: string }> = ({ content }) => {
+  const sanitizedContent = DOMPurify.sanitize(content, {
+    SANITIZE_NAMED_PROPS: true, // 防護 DOM Clobbering
+    ALLOWED_TAGS: ['p', 'br', 'strong', 'em', 'ul', 'ol', 'li'],
+    ALLOWED_ATTR: ['href', 'title']
+  });
+  
+  return <div dangerouslySetInnerHTML={{ __html: sanitizedContent }} />;
+};
+
+// ✅ 安全的用戶輸入處理
+const UserComment: React.FC<{ comment: string }> = ({ comment }) => {
+  // 使用 textContent 而非 innerHTML
+  return <p>{comment}</p>; // React 自動轉義
+};
+```
+
+#### **SQL 注入防護（後端 API 呼叫）**
+```typescript
+// ✅ 參數化查詢（前端驗證）
+const searchCourses = async (query: string) => {
+  // 前端輸入驗證
+  if (!query || query.length > 100) {
+    throw new Error('Invalid search query');
+  }
+  
+  // 使用 URL 參數而非字串拼接
+  const response = await apiClient.get('/courses/search', {
+    params: { q: query } // axios 會自動編碼參數
+  });
+  
+  return response.data;
+};
+```
+
+### **A04:2021 – 不安全設計 (Insecure Design)**
+
+#### **安全的表單設計**
+```typescript
+// ✅ 安全的表單驗證
+const LoginForm: React.FC = () => {
+  const [formData, setFormData] = useState({ email: '', password: '' });
+  const [errors, setErrors] = useState<Record<string, string>>({});
+  
+  const validateForm = (data: typeof formData): Record<string, string> => {
+    const errors: Record<string, string> = {};
+    
+    // Email 驗證
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(data.email)) {
+      errors.email = '請輸入有效的電子郵件地址';
+    }
+    
+    // 密碼強度檢查
+    if (data.password.length < 8) {
+      errors.password = '密碼至少需要 8 個字符';
+    }
+    
+    return errors;
+  };
+  
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    const validationErrors = validateForm(formData);
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      return;
+    }
+    
+    try {
+      await login(formData);
+    } catch (error) {
+      // 不透露具體錯誤資訊
+      setErrors({ general: '登入失敗，請檢查您的憑證' });
+    }
+  };
+  
+  return (
+    <form onSubmit={handleSubmit}>
+      {/* 表單欄位 */}
+    </form>
+  );
+};
+```
+
+### **A05:2021 – 安全設定錯誤 (Security Misconfiguration)**
+
+#### **Content Security Policy (CSP)**
+```html
+<!-- ✅ 在 index.html 中設定 CSP -->
+<meta http-equiv="Content-Security-Policy" 
+      content="default-src 'self'; 
+               script-src 'self' 'unsafe-inline' https://trusted-scripts.com; 
+               style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+               font-src 'self' https://fonts.gstatic.com;
+               img-src 'self' data: https:;
+               connect-src 'self' https://api.example.com;">
+```
+
+#### **安全標頭設定**
+```typescript
+// ✅ Vite 配置中的安全標頭
+export default defineConfig({
+  server: {
+    headers: {
+      'X-Content-Type-Options': 'nosniff',
+      'X-Frame-Options': 'DENY',
+      'X-XSS-Protection': '1; mode=block',
+      'Referrer-Policy': 'strict-origin-when-cross-origin'
+    }
+  }
+});
+```
+
+### **A06:2021 – 易受攻擊和過時的元件 (Vulnerable and Outdated Components)**
+
+#### **依賴管理**
+```bash
+# ✅ 定期檢查安全漏洞
+npm audit
+
+# ✅ 修復已知漏洞
+npm audit fix
+
+# ✅ 使用 npm-check-updates 檢查過時依賴
+npx npm-check-updates -u
+```
+
+#### **依賴安全監控**
+```json
+// package.json 中的安全腳本
+{
+  "scripts": {
+    "security-check": "npm audit && npm run build",
+    "deps-update": "npx npm-check-updates -u && npm install",
+    "security-report": "npm audit --json > security-report.json"
+  }
+}
+```
+
+### **A07:2021 – 識別和認證失效 (Identification and Authentication Failures)**
+
+#### **安全的認證處理**
+```typescript
+// ✅ 安全的密碼處理
+const PasswordInput: React.FC<{ onChange: (value: string) => void }> = ({ onChange }) => {
+  const [showPassword, setShowPassword] = useState(false);
+  
+  return (
+    <div className="relative">
+      <input
+        type={showPassword ? "text" : "password"}
+        autoComplete="current-password" // 重要：允許密碼管理器工作
+        onChange={(e) => onChange(e.target.value)}
+        className="w-full px-3 py-2 border rounded-md"
+      />
+      <button
+        type="button"
+        onClick={() => setShowPassword(!showPassword)}
+        className="absolute right-2 top-2"
+      >
+        {showPassword ? '隱藏' : '顯示'}
+      </button>
+    </div>
+  );
+};
+
+// ✅ 多因素認證支援
+const MFASetup: React.FC = () => {
+  const [qrCode, setQrCode] = useState<string>('');
+  
+  const enableMFA = async () => {
+    try {
+      const response = await apiClient.post('/auth/mfa/setup');
+      setQrCode(response.data.qrCode);
+    } catch (error) {
+      console.error('MFA setup failed:', error);
+    }
+  };
+  
+  return (
+    <div>
+      <button onClick={enableMFA}>啟用雙因素認證</button>
+      {qrCode && <img src={qrCode} alt="MFA QR Code" />}
+    </div>
+  );
+};
+```
+
+### **A08:2021 – 軟體和資料完整性失效 (Software and Data Integrity Failures)**
+
+#### **完整性驗證**
+```typescript
+// ✅ 檔案上傳完整性檢查
+const FileUpload: React.FC = () => {
+  const validateFile = (file: File): boolean => {
+    // 檔案類型驗證
+    const allowedTypes = ['image/jpeg', 'image/png', 'application/pdf'];
+    if (!allowedTypes.includes(file.type)) {
+      return false;
+    }
+    
+    // 檔案大小限制
+    const maxSize = 5 * 1024 * 1024; // 5MB
+    if (file.size > maxSize) {
+      return false;
+    }
+    
+    return true;
+  };
+  
+  const handleFileUpload = async (file: File) => {
+    if (!validateFile(file)) {
+      throw new Error('檔案驗證失敗');
+    }
+    
+    const formData = new FormData();
+    formData.append('file', file);
+    
+    // 使用 multipart/form-data 上傳
+    await apiClient.post('/upload', formData, {
+      headers: { 'Content-Type': 'multipart/form-data' }
+    });
+  };
+  
+  return <input type="file" onChange={(e) => e.target.files?.[0] && handleFileUpload(e.target.files[0])} />;
+};
+```
+
+### **A09:2021 – 安全記錄和監控失效 (Security Logging and Monitoring Failures)**
+
+#### **前端錯誤監控**
+```typescript
+// ✅ 安全事件記錄
+class SecurityLogger {
+  static logSecurityEvent(event: string, details?: any) {
+    const logData = {
+      timestamp: new Date().toISOString(),
+      event,
+      details,
+      userAgent: navigator.userAgent,
+      url: window.location.href
+    };
+    
+    // 發送到後端安全監控系統
+    apiClient.post('/security/log', logData).catch(() => {
+      // 靜默失敗，避免影響用戶體驗
+    });
+  }
+  
+  static logFailedLogin(email: string) {
+    this.logSecurityEvent('failed_login', { email });
+  }
+  
+  static logSuspiciousActivity(activity: string) {
+    this.logSecurityEvent('suspicious_activity', { activity });
+  }
+}
+
+// 使用範例
+const handleLogin = async (credentials: LoginCredentials) => {
+  try {
+    await login(credentials);
+  } catch (error) {
+    SecurityLogger.logFailedLogin(credentials.email);
+    throw error;
+  }
+};
+```
+
+### **A10:2021 – 伺服器端請求偽造 (Server Side Request Forgery)**
+
+#### **前端 URL 驗證**
+```typescript
+// ✅ URL 安全驗證
+const validateUrl = (url: string): boolean => {
+  try {
+    const urlObj = new URL(url);
+    
+    // 只允許 HTTPS 和 HTTP 協議
+    if (!['http:', 'https:'].includes(urlObj.protocol)) {
+      return false;
+    }
+    
+    // 禁止本地和私有 IP 地址
+    const hostname = urlObj.hostname;
+    const forbiddenHosts = [
+      'localhost',
+      '127.0.0.1',
+      '0.0.0.0',
+      '::1'
+    ];
+    
+    if (forbiddenHosts.includes(hostname)) {
+      return false;
+    }
+    
+    // 檢查私有 IP 範圍
+    if (hostname.match(/^10\./) || 
+        hostname.match(/^192\.168\./) || 
+        hostname.match(/^172\.(1[6-9]|2[0-9]|3[0-1])\./)) {
+      return false;
+    }
+    
+    return true;
+  } catch {
+    return false;
+  }
+};
+
+// ✅ 安全的外部資源載入
+const ExternalImageLoader: React.FC<{ src: string }> = ({ src }) => {
+  const [isValidUrl, setIsValidUrl] = useState(false);
+  
+  useEffect(() => {
+    setIsValidUrl(validateUrl(src));
+  }, [src]);
+  
+  if (!isValidUrl) {
+    return <div>無效的圖片來源</div>;
+  }
+  
+  return <img src={src} alt="外部圖片" />;
+};
+```
+
+## 🛡️ 額外安全措施
+
+### **跨站請求偽造 (CSRF) 防護**
+```typescript
+// ✅ CSRF Token 處理
+const CSRFProtection = () => {
+  const [csrfToken, setCsrfToken] = useState<string>('');
+  
+  useEffect(() => {
+    // 從 meta tag 獲取 CSRF token
+    const token = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content');
+    if (token) {
+      setCsrfToken(token);
+      // 設定 axios 預設標頭
+      apiClient.defaults.headers.common['X-CSRF-TOKEN'] = token;
+    }
+  }, []);
+  
+  return null;
+};
+```
+
+### **點擊劫持防護**
+```typescript
+// ✅ Frame busting 技術
+const FrameBustingProtection = () => {
+  useEffect(() => {
+    // 檢查是否在 iframe 中運行
+    if (window.top !== window.self) {
+      // 嘗試跳出 iframe
+      window.top!.location = window.self.location;
+    }
+  }, []);
+  
+  return null;
+};
+```
+
+## 📝 安全開發檢查清單
+
+### **開發階段**
+- [ ] 所有用戶輸入都經過驗證和清理
+- [ ] 使用 HTTPS 進行所有通信
+- [ ] 實施適當的認證和授權
+- [ ] 設定 Content Security Policy
+- [ ] 避免在客戶端存儲敏感資料
+- [ ] 使用安全的 HTTP 標頭
+- [ ] 定期更新依賴套件
+
+### **測試階段**
+- [ ] 執行 `npm audit` 檢查漏洞
+- [ ] 測試各種輸入組合
+- [ ] 驗證認證流程
+- [ ] 檢查錯誤處理
+- [ ] 測試跨站腳本攻擊防護
+
+### **部署前**
+- [ ] 移除所有調試程式碼
+- [ ] 確認生產環境配置
+- [ ] 檢查環境變數安全性
+- [ ] 驗證 CSP 政策
+- [ ] 確認日誌記錄正常運作
+
+## 🚨 事件回應程序
+
+```typescript
+// ✅ 安全事件回應
+const SecurityIncidentHandler = {
+  handleSuspiciousActivity: () => {
+    // 1. 記錄事件
+    SecurityLogger.logSuspiciousActivity('多次登入失敗');
+    
+    // 2. 通知用戶
+    alert('檢測到可疑活動，請檢查您的帳戶安全');
+    
+    // 3. 強制重新認證
+    localStorage.removeItem('authToken');
+    window.location.href = '/login';
+  },
+  
+  handleDataBreach: () => {
+    // 1. 立即清除本地資料
+    localStorage.clear();
+    sessionStorage.clear();
+    
+    // 2. 通知後端
+    apiClient.post('/security/breach').catch(() => {});
+    
+    // 3. 重定向到安全頁面
+    window.location.href = '/security-notice';
+  }
+};
+```
+
+## 📚 參考資源
+
+- [OWASP Top 10 2021](mdc:https:/owasp.org/Top10)
+- [OWASP Cheat Sheet Series](mdc:https:/cheatsheetseries.owasp.org)
+- [Content Security Policy](mdc:https:/developer.mozilla.org/en-US/docs/Web/HTTP/CSP)
+- [DOMPurify Documentation](mdc:https:/github.com/cure53/DOMPurify)
+- [React Security Best Practices](mdc:https:/blog.logrocket.com/react-security-best-practices)
+
+---
+
+**安全是一個持續的過程，需要在整個開發生命週期中持續關注和改進。**

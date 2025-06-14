@@ -1,5 +1,462 @@
 ---
-description:
-globs:
-alwaysApply: false
+description: 
+globs: 
+alwaysApply: true
 ---
+# 路徑與資源管理規範 - CursorLearning Platform
+
+## 🗂️ 資源路徑標準化
+
+### **圖片資源路徑管理**
+
+#### **1. 圖片分類架構**
+```
+src/assets/
+├── images/                    # 本地圖片資源
+│   ├── heroes/               # 輪播圖片
+│   ├── courses/              # 課程封面圖片
+│   ├── ui/                   # UI 裝飾圖片
+│   └── avatars/              # 用戶頭像
+├── icons/                    # 圖標資源
+│   ├── brands/               # 品牌圖標
+│   ├── social/               # 社交媒體圖標
+│   └── ui/                   # UI 圖標
+└── videos/                   # 影片資源
+    ├── intros/               # 介紹影片
+    └── tutorials/            # 教學影片
+```
+
+#### **2. 圖片命名規範**
+```typescript
+// ✅ 正確的圖片命名
+const imageNaming = {
+  // 輪播圖片：hero-{主題}-{版本}.{格式}
+  hero: 'hero-ai-development-v1.jpg',
+  
+  // 課程圖片：course-{課程ID}-{類型}.{格式}
+  course: 'course-stage1-cover.jpg',
+  
+  // UI圖片：ui-{組件}-{狀態}.{格式}
+  ui: 'ui-button-hover.png',
+  
+  // 頭像：avatar-{用戶ID/default}.{格式}
+  avatar: 'avatar-default.svg'
+};
+
+// ❌ 錯誤的圖片命名
+const badNaming = {
+  unclear: 'image1.jpg',        // 不明確
+  mixed: 'Course_Image.JPG',    // 混合命名風格
+  noVersion: 'hero.png'         // 沒有版本控制
+};
+```
+
+#### **3. 圖片路徑管理器**
+```typescript
+// src/utils/imageAssets.ts - 統一圖片路徑管理
+export const ImagePaths = {
+  // 輪播圖片
+  heroes: {
+    aiDevelopment: '/images/heroes/hero-ai-development.jpg',
+    mcpProtocol: '/images/heroes/hero-mcp-protocol.jpg',
+    cursorRules: '/images/heroes/hero-cursor-rules.jpg',
+    toolsEcosystem: '/images/heroes/hero-tools-ecosystem.jpg',
+    enterpriseAI: '/images/heroes/hero-enterprise-ai.jpg'
+  },
+  
+  // 課程封面
+  courses: {
+    stage1: '/images/courses/course-stage1-cover.jpg',
+    stage2: '/images/courses/course-stage2-cover.jpg',
+    stage3: '/images/courses/course-stage3-cover.jpg',
+    mcp: '/images/courses/course-mcp-cover.jpg'
+  },
+  
+  // UI 圖片
+  ui: {
+    loading: '/images/ui/loading-spinner.svg',
+    placeholder: '/images/ui/placeholder.svg',
+    errorFallback: '/images/ui/error-fallback.svg'
+  },
+  
+  // 外部圖片（Unsplash等）
+  external: {
+    getOptimized: (url: string, width: number, height: number) => 
+      `${url}?w=${width}&h=${height}&fit=crop&crop=center`
+  }
+} as const;
+
+// 圖片載入錯誤處理
+export const handleImageError = (
+  event: React.SyntheticEvent<HTMLImageElement>,
+  fallbackSrc?: string
+) => {
+  const img = event.currentTarget;
+  if (fallbackSrc && img.src !== fallbackSrc) {
+    img.src = fallbackSrc;
+  } else {
+    img.src = ImagePaths.ui.errorFallback;
+  }
+};
+```
+
+### **課程數據路徑管理**
+
+#### **1. 課程數據架構**
+```
+src/data/
+├── courses/                  # 課程基本信息
+│   ├── all-courses.json     # 所有課程列表
+│   ├── stage1-course.json   # 第一階段詳細課程
+│   ├── stage2-course.json   # 第二階段詳細課程
+│   └── course-metadata.json # 課程元數據
+├── lessons/                  # 課程內容
+│   ├── stage1-lessons.json  # 第一階段課程內容
+│   ├── stage2-lessons.json  # 第二階段課程內容
+│   └── lesson-templates/     # 課程模板
+├── progress/                 # 學習進度
+│   ├── user-progress.json   # 用戶進度模板
+│   └── achievements.json    # 成就系統
+└── static/                  # 靜態配置
+    ├── navigation.json      # 導航配置
+    └── site-config.json     # 網站配置
+```
+
+#### **2. 課程數據命名規範**
+```typescript
+// ✅ 正確的數據文件命名
+const dataFileNaming = {
+  // 課程列表：{scope}-courses.json
+  allCourses: 'all-courses.json',
+  
+  // 階段課程：stage{N}-course.json
+  stageCourse: 'stage1-course.json',
+  
+  // 課程內容：stage{N}-lessons.json
+  stageLessons: 'stage1-lessons.json',
+  
+  // 備份文件：{原檔名}-backup.json
+  backup: 'stage1-lessons-backup.json'
+};
+```
+
+#### **3. 課程路徑管理器**
+```typescript
+// src/utils/pathManager.ts - 統一路徑管理
+export const DataPaths = {
+  courses: {
+    all: 'src/data/courses/all-courses.json',
+    stage1: 'src/data/courses/stage1-course.json',
+    stage2: 'src/data/courses/stage2-course.json',
+    metadata: 'src/data/courses/course-metadata.json'
+  },
+  
+  lessons: {
+    stage1: 'src/data/lessons/stage1-lessons.json',
+    stage2: 'src/data/lessons/stage2-lessons.json',
+    templates: 'src/data/lessons/lesson-templates/',
+    backup: (filename: string) => `src/data/lessons/${filename}-backup.json`
+  },
+  
+  progress: {
+    userTemplate: 'src/data/progress/user-progress.json',
+    achievements: 'src/data/progress/achievements.json'
+  }
+} as const;
+
+// 路徑驗證函數
+export const validateDataPath = (path: string): boolean => {
+  const allowedPaths = [
+    ...Object.values(DataPaths.courses),
+    ...Object.values(DataPaths.lessons),
+    ...Object.values(DataPaths.progress)
+  ];
+  
+  return allowedPaths.some(allowedPath => 
+    typeof allowedPath === 'string' && allowedPath === path
+  );
+};
+```
+
+## 🚀 動態路由與URL管理
+
+### **1. 頁面路由規範**
+```typescript
+// 路由路徑標準
+export const RoutePaths = {
+  // 主要頁面
+  home: '/',
+  courses: '/courses',
+  about: '/about',
+  contact: '/contact',
+  
+  // 動態路由
+  courseDetail: '/course/:courseId',
+  lessonViewer: '/course/:courseId/lesson/:lessonId',
+  userProfile: '/profile/:userId',
+  
+  // 特殊頁面
+  mcp: '/mcp',
+  tips: '/tips',
+  faq: '/faq',
+  
+  // 管理頁面
+  admin: '/admin',
+  dashboard: '/dashboard'
+} as const;
+
+// URL 生成器
+export const generateUrl = {
+  courseDetail: (courseId: string) => `/course/${courseId}`,
+  lessonViewer: (courseId: string, lessonId: string) => 
+    `/course/${courseId}/lesson/${lessonId}`,
+  userProfile: (userId: string) => `/profile/${userId}`
+};
+```
+
+### **2. API 端點管理**
+```typescript
+// API 路徑管理
+export const ApiPaths = {
+  base: import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000/api',
+  
+  // 課程相關
+  courses: {
+    list: '/courses',
+    detail: (id: string) => `/courses/${id}`,
+    lessons: (id: string) => `/courses/${id}/lessons`,
+    enroll: (id: string) => `/courses/${id}/enroll`
+  },
+  
+  // 用戶相關
+  user: {
+    profile: '/user/profile',
+    progress: '/user/progress',
+    achievements: '/user/achievements'
+  },
+  
+  // 認證相關
+  auth: {
+    login: '/auth/login',
+    register: '/auth/register',
+    refresh: '/auth/refresh',
+    logout: '/auth/logout'
+  }
+} as const;
+
+// API URL 生成器
+export const buildApiUrl = (endpoint: string): string => {
+  return `${ApiPaths.base}${endpoint}`;
+};
+```
+
+## 📁 檔案組織最佳實踐
+
+### **1. 檔案移動指南**
+```typescript
+// 檔案移動檢查清單
+export const FileMovementChecklist = {
+  beforeMove: [
+    '確認新位置符合架構規範',
+    '檢查是否有其他文件引用',
+    '備份重要文件',
+    '更新相關的導入路徑'
+  ],
+  
+  afterMove: [
+    '測試所有相關功能',
+    '更新文檔和註釋',
+    '檢查建構是否成功',
+    '更新路徑管理器'
+  ]
+};
+```
+
+### **2. 資源清理規則**
+```typescript
+// 資源清理標準
+export const CleanupRules = {
+  // 可安全刪除的文件類型
+  safeToDelete: [
+    '*.backup',           // 備份文件
+    '*.tmp',             // 臨時文件
+    '*.log',             // 日誌文件
+    'node_modules/',     // 依賴包（可重新安裝）
+    'dist/',            // 建構輸出（可重新建構）
+    '.DS_Store'         // 系統文件
+  ],
+  
+  // 需要謹慎處理的文件
+  requiresReview: [
+    'src/data/**/*.json', // 數據文件
+    'src/assets/**/*',    // 資源文件
+    '*.config.*',         // 配置文件
+    'package.json',       // 專案配置
+    'README.md'          // 文檔文件
+  ],
+  
+  // 檢查重複文件的標準
+  duplicateCheck: {
+    // 比較文件內容
+    compareContent: true,
+    
+    // 忽略的差異
+    ignoreWhitespace: true,
+    ignoreComments: true,
+    
+    // 重複文件處理策略
+    strategy: 'keep-newest' // 'keep-newest' | 'keep-largest' | 'manual'
+  }
+};
+```
+
+## 🔧 自動化工具配置
+
+### **1. 路徑驗證腳本**
+```bash
+#!/bin/bash
+# scripts/validate-paths.sh
+
+echo "🔍 開始驗證資源路徑..."
+
+# 檢查圖片文件是否存在
+for img in src/assets/images/**/*.{jpg,png,svg,webp}; do
+  if [[ -f "$img" ]]; then
+    echo "✅ $img"
+  else
+    echo "❌ $img (缺失)"
+  fi
+done
+
+# 檢查數據文件是否存在
+for data in src/data/**/*.json; do
+  if [[ -f "$data" ]]; then
+    echo "✅ $data"
+  else
+    echo "❌ $data (缺失)"
+  fi
+done
+
+echo "✨ 路徑驗證完成"
+```
+
+### **2. 重複文件檢測**
+```bash
+#!/bin/bash
+# scripts/find-duplicates.sh
+
+echo "🔍 檢查重複文件..."
+
+# 使用 fdupes 檢查重複文件
+if command -v fdupes &> /dev/null; then
+  fdupes -r src/ --sameline
+else
+  echo "⚠️ 請安裝 fdupes 工具：brew install fdupes"
+fi
+
+echo "✨ 重複文件檢查完成"
+```
+
+### **3. 檔案組織腳本**
+```typescript
+// scripts/organize-files.ts
+import { promises as fs } from 'fs';
+import path from 'path';
+
+export const organizeFiles = async () => {
+  // 移動錯放的UI組件到ui目錄
+  const srcComponents = 'src/components';
+  const uiComponents = 'src/components/ui';
+  
+  const files = await fs.readdir(srcComponents);
+  
+  for (const file of files) {
+    if (file.includes('Button') || file.includes('Card') || 
+        file.includes('Modal') || file.includes('Badge')) {
+      const oldPath = path.join(srcComponents, file);
+      const newPath = path.join(uiComponents, file);
+      
+      try {
+        await fs.rename(oldPath, newPath);
+        console.log(`✅ 移動: ${file} -> ui/`);
+      } catch (error) {
+        console.log(`❌ 移動失敗: ${file}`);
+      }
+    }
+  }
+};
+```
+
+## 📋 路徑管理檢查清單
+
+### **開發時檢查**
+- [ ] 新增檔案時使用正確的命名規範
+- [ ] 圖片放置在對應的分類目錄中
+- [ ] 使用路徑管理器而非硬編碼路徑
+- [ ] 更新相關的導入語句
+- [ ] 檢查是否有重複檔案
+
+### **提交前檢查**
+- [ ] 執行路徑驗證腳本
+- [ ] 檢查建構是否成功
+- [ ] 確認所有圖片載入正常
+- [ ] 驗證路由功能正常
+- [ ] 清理不需要的檔案
+
+### **部署前檢查**
+- [ ] 確認所有資源路徑正確
+- [ ] 檢查外部圖片URL有效性
+- [ ] 驗證API端點設定
+- [ ] 測試所有頁面載入
+- [ ] 確認備份檔案已排除
+
+## 🚨 緊急修復指南
+
+```typescript
+// 常見路徑問題快速修復
+export const QuickFixes = {
+  // 圖片載入失敗
+  imageLoadError: {
+    problem: '圖片顯示不出來',
+    solutions: [
+      '檢查圖片路徑是否正確',
+      '確認圖片檔案是否存在',
+      '使用 ImagePaths 管理器',
+      '添加錯誤處理和備用圖片'
+    ]
+  },
+  
+  // 路由錯誤
+  routingError: {
+    problem: '頁面跳轉失敗',
+    solutions: [
+      '檢查路由定義是否正確',
+      '確認組件是否存在',
+      '使用 RoutePaths 常數',
+      '檢查動態參數格式'
+    ]
+  },
+  
+  // 資料載入失敗
+  dataLoadError: {
+    problem: '課程數據載入失敗',
+    solutions: [
+      '檢查JSON檔案格式',
+      '確認檔案路徑正確',
+      '使用 DataPaths 管理器',
+      '添加錯誤邊界處理'
+    ]
+  }
+};
+```
+
+## 📚 參考工具
+
+- **Path Intellisense** - VS Code 路徑自動完成
+- **Image Optimization** - 圖片壓縮工具
+- **File Organizer** - 檔案自動整理
+- **Duplicate Finder** - 重複檔案檢測
+
+---
+
+**遵循這些路徑管理規範可以確保專案結構清晰、資源管理有序、維護效率提升。**
