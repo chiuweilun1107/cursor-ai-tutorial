@@ -59,7 +59,7 @@ const LearningPathSection: React.FC = () => {
       title: "AI工具熟練",
       subtitle: "深度整合三大AI工具，建立工作流程",
       description: "配置Cursor Rules、整合ChatGPT API與Claude、建立AI開發工作流程",
-      image: "https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=800&h=600&fit=crop&crop=center",
+      image: "/images/ai-tools-expert.jpg",
       price: "NT$ 4,999",
       originalPrice: "NT$ 7,999",
       progress: 56,
