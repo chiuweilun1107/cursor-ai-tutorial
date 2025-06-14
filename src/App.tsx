@@ -3,11 +3,10 @@ import { Routes, Route } from 'react-router-dom'
 import Layout from './components/Layout'
 import Home from './pages/Home'
 import Courses from './pages/Courses'
-import BeginnerCourse from './pages/BeginnerCourse'
-import IntermediateCourse from './pages/IntermediateCourse'
-import AdvancedCourse from './pages/AdvancedCourse'
-import Tips from './pages/Tips'
-import FAQ from './pages/FAQ'
+import CourseDetail from './pages/CourseDetail'
+import LessonViewer from './pages/LessonViewer'
+import MCPCourse from './pages/MCPCourse'
+import UnderDevelopment from './pages/UnderDevelopment'
 
 function App() {
   return (
@@ -15,11 +14,10 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/courses" element={<Courses />} />
-        <Route path="/courses/beginner" element={<BeginnerCourse />} />
-        <Route path="/courses/intermediate" element={<IntermediateCourse />} />
-        <Route path="/courses/advanced" element={<AdvancedCourse />} />
-        <Route path="/tips" element={<Tips />} />
-        <Route path="/faq" element={<FAQ />} />
+        <Route path="/courses/mcp" element={<MCPCourse />} />
+        <Route path="/course/:id" element={<CourseDetail />} />
+        <Route path="/learn/:courseId/:lessonId" element={<LessonViewer />} />
+        <Route path="/under-development/:id" element={<UnderDevelopment />} />
       </Routes>
     </Layout>
   )

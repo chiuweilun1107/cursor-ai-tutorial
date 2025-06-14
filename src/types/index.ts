@@ -2,7 +2,7 @@
 export interface Lesson {
   id: number
   title: string
-  type: 'video' | 'hands-on' | 'text' | 'quiz'
+  type: 'video' | 'hands-on' | 'text' | 'quiz' | 'slides' | 'project'
   duration: string
   description?: string
   videoUrl?: string

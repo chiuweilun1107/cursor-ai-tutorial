@@ -13,7 +13,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   const navigation = [
     { name: '首頁', href: '/', icon: Home },
     { name: 'AI工具生態', href: '/courses', icon: Layers },
-    { name: 'MCP技術', href: '/courses/advanced', icon: Zap },
+    { name: 'MCP技術', href: '/courses/mcp', icon: Zap },
     { name: '實戰應用', href: '/tips', icon: Target },
     { name: '社群討論', href: '/faq', icon: HelpCircle },
   ]

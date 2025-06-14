@@ -1,0 +1,157 @@
+[
+  {
+    "id": "stage1-beginner",
+    "title": "第一階段：零基礎啟蒙",
+    "subtitle": "從零開始的AI輔助開發之旅",
+    "description": "專為完全沒有程式經驗的新手設計，透過ChatGPT、Cursor、Claude三大AI工具，讓你在4-6週內建立起AI輔助開發的基礎能力。",
+    "level": "beginner",
+    "duration": "4-6週",
+    "price": 2999,
+    "originalPrice": 4999,
+    "isPopular": true,
+    "isFree": false,
+    "image": "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=800&h=600&fit=crop&crop=center",
+    "technologies": ["ChatGPT", "Cursor", "HTML", "CSS", "JavaScript"],
+    "instructors": ["AI開發專家團隊"],
+    "rating": 4.8,
+    "reviewCount": 125,
+    "enrollmentCount": 1250,
+    "lastUpdated": "2024-12-13",
+    "status": "available",
+    "objectives": [
+      "理解AI輔助開發的核心概念",
+      "熟練使用ChatGPT進行程式學習",
+      "掌握Cursor編輯器基本功能",
+      "能夠建立完整的個人網站"
+    ],
+    "prerequisites": [
+      "基本電腦操作能力",
+      "對程式設計有興趣",
+      "無需任何程式經驗"
+    ]
+  },
+  {
+    "id": "stage2-intermediate", 
+    "title": "第二階段：AI工具熟練",
+    "subtitle": "深度掌握三大AI工具協作",
+    "description": "深入學習ChatGPT、Cursor、Claude的進階功能，建立高效的AI輔助開發工作流程，完成動態網站專案。",
+    "level": "intermediate",
+    "duration": "6-8週", 
+    "price": 4999,
+    "originalPrice": 7999,
+    "isPopular": false,
+    "isFree": false,
+    "image": "/images/ai-tools-expert.jpg",
+    "technologies": ["Cursor Rules", "ChatGPT API", "Claude", "React基礎", "Node.js"],
+    "instructors": ["AI開發專家團隊"],
+    "rating": 4.7,
+    "reviewCount": 89,
+    "enrollmentCount": 567,
+    "lastUpdated": "2024-12-13",
+    "status": "available",
+    "objectives": [
+      "熟練使用Cursor Rules深度配置",
+      "掌握ChatGPT進階提示詞技巧",
+      "學會Claude代碼審查能力",
+      "建立完整的開發工作流程"
+    ],
+    "prerequisites": [
+      "完成第一階段課程",
+      "基本HTML/CSS/JavaScript知識",
+      "了解程式設計基本概念"
+    ]
+  },
+  {
+    "id": "stage3-fullstack",
+    "title": "第三階段：全端開發能力", 
+    "subtitle": "現代Web應用開發實戰",
+    "description": "學習現代前端框架和後端開發，使用AI工具建置完整的全端Web應用，掌握企業級開發技能。",
+    "level": "advanced",
+    "duration": "8-10週",
+    "price": 7999,
+    "originalPrice": 12999,
+    "isPopular": true,
+    "isFree": false,
+    "image": "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=800&h=600&fit=crop&crop=center",
+    "technologies": ["React", "Node.js", "Express", "MongoDB", "TypeScript"],
+    "instructors": ["AI開發專家團隊"],
+    "rating": 4.9,
+    "reviewCount": 234,
+    "enrollmentCount": 890,
+    "lastUpdated": "2024-12-13",
+    "status": "available",
+    "objectives": [
+      "掌握React現代前端開發",
+      "學會Node.js後端API開發",
+      "能建置完整的全端應用",
+      "理解企業級開發流程"
+    ],
+    "prerequisites": [
+      "完成第二階段課程",
+      "熟悉JavaScript基礎",
+      "有簡單專案開發經驗"
+    ]
+  },
+  {
+    "id": "stage4-enterprise",
+    "title": "第四階段：企業級技能",
+    "subtitle": "MCP協議與企業系統整合",
+    "description": "深入學習MCP協議、Taskmaster工作流程，掌握企業級AI應用開發，具備承接大型專案的能力。",
+    "level": "expert",
+    "duration": "10-12週",
+    "price": 12999,
+    "originalPrice": 19999,
+    "isPopular": false,
+    "isFree": false,
+    "image": "https://images.unsplash.com/photo-1519125323398-675f0ddb6308?w=800&h=600&fit=crop&crop=center",
+    "technologies": ["MCP協議", "Taskmaster", "Docker", "Kubernetes", "微服務"],
+    "instructors": ["AI開發專家團隊"],
+    "rating": 4.6,
+    "reviewCount": 45,
+    "enrollmentCount": 234,
+    "lastUpdated": "2024-12-13", 
+    "status": "available",
+    "objectives": [
+      "掌握MCP協議深度應用",
+      "學會企業級系統整合",
+      "能設計微服務架構",
+      "具備技術團隊領導能力"
+    ],
+    "prerequisites": [
+      "完成第三階段課程",
+      "具備一定的程式開發經驗",
+      "熟悉現代開發工具和流程"
+    ]
+  },
+  {
+    "id": "stage5-architect",
+    "title": "第五階段：系統架構師",
+    "subtitle": "大型系統設計與技術領導",
+    "description": "培養系統架構師級別的技術能力，學會大型系統設計、技術決策、團隊領導，成為AI時代的技術領袖。",
+    "level": "master",
+    "duration": "12-16週",
+    "price": 19999,
+    "originalPrice": 29999,
+    "isPopular": false,
+    "isFree": false,
+    "image": "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?w=800&h=600&fit=crop&crop=center",
+    "technologies": ["系統架構", "技術管理", "AI策略", "雲端架構", "團隊領導"],
+    "instructors": ["資深架構師團隊"],
+    "rating": 4.8,
+    "reviewCount": 28,
+    "enrollmentCount": 89,
+    "lastUpdated": "2024-12-13",
+    "status": "available", 
+    "objectives": [
+      "具備大型系統架構設計能力",
+      "掌握AI驅動的系統優化",
+      "學會技術團隊領導",
+      "能制定企業AI策略"
+    ],
+    "prerequisites": [
+      "完成第四階段課程",
+      "具備豐富的實務經驗",
+      "有技術管理經驗者佳"
+    ]
+  }
+]

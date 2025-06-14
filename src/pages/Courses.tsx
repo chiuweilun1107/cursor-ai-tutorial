@@ -45,25 +45,18 @@ const Courses: React.FC = () => {
       improvement: '開發效率提升126%'
     },
     {
-      id: 'advanced',
-      title: '企業級AI應用',
-      subtitle: '大規模AI部署與治理',
-      duration: '2-3個月',
-      students: '743',
+      id: 'mcp',
+      title: 'MCP技術',
+      subtitle: 'Model Context Protocol 深度學習',
+      description: '掌握 Anthropic 開源的 MCP 協議，實現 AI 工具與各種服務的無縫整合',
       level: 'advanced',
-      color: 'purple',
-      description: '企業級AI應用架構設計，團隊協作工作流程，AI治理與安全合規',
-      features: [
-        '企業AI架構設計',
-        'AI工作流程自動化',
-        '團隊協作最佳實務',
-        'AI安全與合規管理',
-        'ROI測量與優化',
-        '大規模AI部署策略'
-      ],
-      projects: ['企業AI平台設計', 'AI治理框架建立'],
-      link: '/courses/advanced',
-      improvement: '團隊生產力提升66%'
+      duration: '2-3個月',
+      students: 245,
+      rating: 4.9,
+      image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+      tags: ['MCP協議', 'AI整合', '企業應用'],
+      link: '/courses/mcp',
+      instructor: 'MCP專家團隊'
     }
   ]
 
@@ -195,10 +188,10 @@ const Courses: React.FC = () => {
 
                 {/* CTA Button */}
                 <Link
-                  to={course.link}
+                  to={course.id === 'beginer' ? '/course/stage1-beginner' : course.id === 'mcp' ? course.link : `/under-development/stage2-intermediate`}
                   className={`w-full flex items-center justify-center gap-2 ${colors.button} text-white px-6 py-3 rounded-lg font-medium transition-colors`}
                 >
-                  開始學習
+                  {course.id === 'beginer' ? '開始學習' : course.id === 'mcp' ? '了解更多' : '即將推出'}
                   <ArrowRight size={16} />
                 </Link>
               </div>

@@ -1,13 +1,17 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { ArrowRight, MessageCircle, Edit3, Layers, TrendingUp, Clock, Users, BookOpen, CheckCircle } from 'lucide-react'
+import { ArrowRight, MessageCircle, Edit3, Layers, TrendingUp, Clock, Users, BookOpen, CheckCircle, Code, DollarSign } from 'lucide-react'
 import HeroCarousel from '../components/HeroCarousel'
+import LearningPathSection from '../components/course/LearningPathSection'
 
 const Home: React.FC = () => {
   return (
     <div className="min-h-screen">
-      {/* Hero Carousel Section */}
+      {/* Hero Carousel */}
       <HeroCarousel />
+      
+      {/* Learning Path Section */}
+      <LearningPathSection />
 
       {/* AI應用平台優勢 Section */}
       <section className="py-32 bg-gray-50">
@@ -21,39 +25,60 @@ const Home: React.FC = () => {
             </p>
           </div>
 
-          <div className="grid lg:grid-cols-3 gap-16">
-            {/* 生產力提升 */}
-            <div className="text-center">
-              <div className="w-32 h-32 bg-gradient-to-br from-green-500 to-emerald-600 rounded-3xl flex items-center justify-center mx-auto mb-8 shadow-2xl">
+          <div className="grid lg:grid-cols-3 gap-12">
+            {/* 生產力提升 - 綠色 */}
+            <div className="bg-green-500 text-white rounded-3xl p-12 shadow-lg hover:shadow-xl transition-all duration-300 text-center group cursor-pointer">
+              {/* 圓角圖標 */}
+              <div className="w-32 h-32 bg-white bg-opacity-20 rounded-3xl flex items-center justify-center mx-auto mb-8 group-hover:scale-110 transition-transform duration-300">
                 <TrendingUp className="text-white" size={48} />
               </div>
-              <div className="text-4xl font-bold text-green-600 mb-4">66%</div>
-              <h3 className="text-3xl font-bold text-gray-900 mb-6">生產力提升</h3>
-              <p className="text-lg text-gray-600 leading-relaxed">
+              
+              {/* 大數字 */}
+              <div className="text-6xl font-bold text-white mb-6">66%</div>
+              
+              {/* 標題 */}
+              <h3 className="text-3xl font-bold text-white mb-6">生產力提升</h3>
+              
+              {/* 描述 */}
+              <p className="text-lg text-white text-opacity-90 leading-relaxed">
                 真實研究顯示，使用AI工具的員工平均生產力提升66%，相當於47年的自然生產力增長
               </p>
             </div>
 
-            {/* 程式設計效能 */}
-            <div className="text-center">
-              <div className="w-32 h-32 bg-gradient-to-br from-blue-500 to-purple-600 rounded-3xl flex items-center justify-center mx-auto mb-8 shadow-2xl">
-                <BookOpen className="text-white" size={48} />
+            {/* 編程效率 - 藍色 */}
+            <div className="bg-blue-500 text-white rounded-3xl p-12 shadow-lg hover:shadow-xl transition-all duration-300 text-center group cursor-pointer">
+              {/* 圓角圖標 */}
+              <div className="w-32 h-32 bg-white bg-opacity-20 rounded-3xl flex items-center justify-center mx-auto mb-8 group-hover:scale-110 transition-transform duration-300">
+                <Code className="text-white" size={48} />
               </div>
-              <div className="text-4xl font-bold text-blue-600 mb-4">126%</div>
-              <h3 className="text-3xl font-bold text-gray-900 mb-6">編程效率</h3>
-              <p className="text-lg text-gray-600 leading-relaxed">
+              
+              {/* 大數字 */}
+              <div className="text-6xl font-bold text-white mb-6">126%</div>
+              
+              {/* 標題 */}
+              <h3 className="text-3xl font-bold text-white mb-6">編程效率</h3>
+              
+              {/* 描述 */}
+              <p className="text-lg text-white text-opacity-90 leading-relaxed">
                 程式設計師使用AI工具每週可完成126%更多專案，大幅縮短開發週期
               </p>
             </div>
 
-            {/* 市場價值 */}
-            <div className="text-center">
-              <div className="w-32 h-32 bg-gradient-to-br from-orange-500 to-red-600 rounded-3xl flex items-center justify-center mx-auto mb-8 shadow-2xl">
-                <Users className="text-white" size={48} />
+            {/* 市場規模 - 橙色 */}
+            <div className="bg-orange-500 text-white rounded-3xl p-12 shadow-lg hover:shadow-xl transition-all duration-300 text-center group cursor-pointer">
+              {/* 圓角圖標 */}
+              <div className="w-32 h-32 bg-white bg-opacity-20 rounded-3xl flex items-center justify-center mx-auto mb-8 group-hover:scale-110 transition-transform duration-300">
+                <DollarSign className="text-white" size={48} />
               </div>
-              <div className="text-4xl font-bold text-orange-600 mb-4">$7T</div>
-              <h3 className="text-3xl font-bold text-gray-900 mb-6">市場規模</h3>
-              <p className="text-lg text-gray-600 leading-relaxed">
+              
+              {/* 大數字 */}
+              <div className="text-6xl font-bold text-white mb-6">$7T</div>
+              
+              {/* 標題 */}
+              <h3 className="text-3xl font-bold text-white mb-6">市場規模</h3>
+              
+              {/* 描述 */}
+              <p className="text-lg text-white text-opacity-90 leading-relaxed">
                 Goldman Sachs估計GenAI將在未來10年創造7兆美元的全球GDP增長
               </p>
             </div>
@@ -104,7 +129,7 @@ const Home: React.FC = () => {
             <div className="relative">
               <div className="aspect-square rounded-3xl overflow-hidden shadow-2xl">
                 <img
-                  src="https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&auto=format&fit=crop&w=2340&q=80"
+                  src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=2340&q=80"
                   alt="AI應用革命"
                   className="w-full h-full object-cover"
                 />
@@ -163,7 +188,7 @@ const Home: React.FC = () => {
               </div>
 
               <Link 
-                to="/courses/advanced" 
+                to="/courses/mcp" 
                 className="block w-full bg-gradient-to-r from-purple-500 to-violet-600 text-white text-center py-4 rounded-xl font-semibold hover:shadow-lg transition-all duration-300"
               >
                 深入MCP技術

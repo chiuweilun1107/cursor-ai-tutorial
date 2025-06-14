@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import { Link } from 'react-router-dom'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
+import { imageAssets } from '../utils/imageAssets'
 
 interface HeroSlide {
   id: number
@@ -17,8 +18,8 @@ const HeroCarousel: React.FC = () => {
   const [isAutoPlay, setIsAutoPlay] = useState(true)
   const [isTransitioning, setIsTransitioning] = useState(false)
   const [isPaused, setIsPaused] = useState(false)
-
-  // 輪播內容 - AI應用平台的5個核心頁面
+  
+  // 輪播內容 - AI應用平台的6個核心頁面
   const heroSlides: HeroSlide[] = [
     {
       id: 1,
@@ -26,7 +27,7 @@ const HeroCarousel: React.FC = () => {
       subtitle: "重新定義開發者的工作方式",
       description: "不只是代碼補全，而是完整的AI工作流程。掌握Cursor、ChatGPT、Claude的深度整合，讓AI成為你的智能工作夥伴。生產力提升66%，開啟7兆美元的AI應用市場。",
       bgGradient: "from-slate-900 via-blue-900 to-indigo-800",
-      image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&auto=format&fit=crop&w=2340&q=80",
+      image: imageAssets.hero.slide1,
       badge: "AI應用革命"
     },
     {
@@ -35,7 +36,7 @@ const HeroCarousel: React.FC = () => {
       subtitle: "AI工具的連接標準",
       description: "Anthropic最新開源的MCP協議，讓AI工具像USB-C一樣通用。連接數據庫、API、檔案系統，打造真正強大的AI應用。支援GitHub、Slack、PostgreSQL等企業系統。",
       bgGradient: "from-purple-900 via-violet-800 to-blue-800",
-      image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&auto=format&fit=crop&w=2340&q=80",
+      image: imageAssets.hero.slide2,
       badge: "MCP技術深度"
     },
     {
@@ -44,7 +45,7 @@ const HeroCarousel: React.FC = () => {
       subtitle: "讓AI理解你的項目邏輯",
       description: "不只是代碼補全，而是讓AI深度理解你的項目架構、編碼風格、業務邏輯。透過Rules配置，打造專屬的AI開發助手。程式設計師效能提升126%。",
       bgGradient: "from-emerald-900 via-teal-800 to-cyan-800",
-      image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2340&q=80",
+      image: imageAssets.hero.slide3,
       badge: "超越代碼補全"
     },
     {
@@ -53,7 +54,7 @@ const HeroCarousel: React.FC = () => {
       subtitle: "Cursor + ChatGPT + Claude",
       description: "學會整合多個AI工具的優勢：Cursor處理代碼、ChatGPT解決問題、Claude深度分析。建立個人AI工具鏈，40%的專業開發者都在使用多AI工具策略。",
       bgGradient: "from-orange-900 via-red-800 to-pink-800",
-      image: "https://images.unsplash.com/photo-1518932945647-7a1c969f8be2?ixlib=rb-4.0.3&auto=format&fit=crop&w=2340&q=80",
+      image: imageAssets.hero.slide4,
       badge: "多AI工具整合"
     },
     {
@@ -62,8 +63,17 @@ const HeroCarousel: React.FC = () => {
       subtitle: "從個人效率到團隊協作",
       description: "企業如何系統性地導入AI工具，建立AI工作流程，提升整個團隊的協作效率和技術能力。92%的企業正在增加AI投資，搶佔先機。",
       bgGradient: "from-indigo-900 via-purple-800 to-pink-800",
-      image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2340&q=80",
+      image: imageAssets.hero.slide5,
       badge: "企業AI轉型"
+    },
+    {
+      id: 6,
+      title: "養成與AI對話的習慣",
+      subtitle: "讓AI成為你的日常工作夥伴",
+      description: "1. 下載桌面版AI - 隨時可用，無需開啟瀏覽器\n2. 優先使用AI，再考慮瀏覽器 - 改變思維模式\n3. 運用AI也是一種能力 - 新時代的核心技能，決定你的競爭力",
+      bgGradient: "from-cyan-900 via-blue-800 to-purple-800",
+      image: imageAssets.hero.slide6,
+      badge: "AI習慣養成"
     }
   ]
 
@@ -211,13 +221,17 @@ const HeroCarousel: React.FC = () => {
             </h2>
             
             {/* 描述 */}
-            <p 
+            <div 
               className={`text-lg md:text-xl text-white/80 mb-10 max-w-3xl leading-relaxed transition-all duration-1000 delay-400 ${
                 isTransitioning ? 'animate-fade-in-up' : 'animate-fade-in'
               }`}
             >
-              {heroSlides[currentSlide].description}
-            </p>
+              {heroSlides[currentSlide].description.split('\n').map((line, index) => (
+                <p key={index} className="mb-2">
+                  {line}
+                </p>
+              ))}
+            </div>
             
             {/* 按鈕群組 */}
             <div 

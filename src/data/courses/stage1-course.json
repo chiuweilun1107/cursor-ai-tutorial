@@ -1,0 +1,225 @@
+{
+  "id": "stage1-beginner",
+  "title": "第一階段：零基礎啟蒙",
+  "subtitle": "從零開始的AI輔助開發之旅",
+  "description": "專為完全沒有程式經驗的新手設計，透過ChatGPT、Cursor、Claude三大AI工具，讓你在4-6週內建立起AI輔助開發的基礎能力，並完成第一個個人網站專案。",
+  "level": "beginner",
+  "duration": "4-6週",
+  "price": 2999,
+  "originalPrice": 4999,
+  "isPopular": true,
+  "isFree": false,
+  "image": "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&h=600&fit=crop&auto=format",
+  "objectives": [
+    "理解AI輔助開發的核心概念和優勢",
+    "熟練使用ChatGPT進行程式學習和問題解決",
+    "掌握Cursor編輯器的基本功能和AI輔助開發",
+    "能夠建立完整的個人網站專案",
+    "建立程式設計的基本思維和邏輯能力"
+  ],
+  "prerequisites": [
+    "基本電腦操作能力",
+    "對程式設計有興趣（無需任何經驗）",
+    "能夠安裝軟體和設定開發環境",
+    "具備基本中英文閱讀能力"
+  ],
+  "technologies": [
+    "ChatGPT",
+    "Cursor編輯器",
+    "HTML",
+    "CSS",
+    "JavaScript基礎",
+    "Git版本控制",
+    "GitHub Pages部署"
+  ],
+  "instructors": ["AI開發專家團隊"],
+  "rating": 4.8,
+  "reviewCount": 125,
+  "enrollmentCount": 1250,
+  "lastUpdated": "2024-12-13",
+  "status": "available",
+  "weeks": [
+    {
+      "weekNumber": 1,
+      "title": "AI工具認知建立",
+      "description": "建立對AI輔助開發的正確認知，學習與AI對話的技巧",
+      "lessons": [
+        {
+          "id": "stage1-lesson-1-1",
+          "title": "什麼是AI輔助開發？",
+          "description": "理解AI輔助開發的革命性意義，認識ChatGPT、Cursor、Claude三大工具",
+          "type": "video",
+          "duration": 45,
+          "isFree": true
+        },
+        {
+          "id": "stage1-lesson-1-2",
+          "title": "認識你的數位助手",
+          "description": "深入了解ChatGPT的能力與限制，學會有效的對話技巧",
+          "type": "hands-on",
+          "duration": 60,
+          "isFree": true
+        },
+        {
+          "id": "stage1-lesson-1-3",
+          "title": "建立學習心態",
+          "description": "培養AI時代的學習思維，設定合理的學習期望",
+          "type": "text",
+          "duration": 30,
+          "isFree": false
+        },
+        {
+          "id": "stage1-lesson-1-4",
+          "title": "第一週實作練習",
+          "description": "綜合練習：使用ChatGPT解決實際問題",
+          "type": "quiz",
+          "duration": 45,
+          "isFree": false
+        }
+      ],
+      "estimatedTime": "3-4小時"
+    },
+    {
+      "weekNumber": 2,
+      "title": "程式思維培養",
+      "description": "培養程式設計的邏輯思維，為實際編程做準備",
+      "lessons": [
+        {
+          "id": "stage1-lesson-2-1",
+          "title": "程式設計的邏輯思維",
+          "description": "理解程式設計的基本邏輯和思考方式",
+          "type": "video",
+          "duration": 50,
+          "isFree": false
+        },
+        {
+          "id": "stage1-lesson-2-2",
+          "title": "問題分解與解決",
+          "description": "學會將複雜問題分解為簡單步驟",
+          "type": "hands-on",
+          "duration": 65,
+          "isFree": false
+        },
+        {
+          "id": "stage1-lesson-2-3",
+          "title": "與AI協作思維",
+          "description": "建立與AI有效協作的思維模式",
+          "type": "text",
+          "duration": 35,
+          "isFree": false
+        },
+        {
+          "id": "stage1-lesson-2-4",
+          "title": "第二週綜合練習",
+          "description": "邏輯思維訓練與AI對話練習",
+          "type": "quiz",
+          "duration": 40,
+          "isFree": false
+        }
+      ],
+      "estimatedTime": "3-4小時"
+    },
+    {
+      "weekNumber": 3,
+      "title": "第一次真正編程",
+      "description": "使用AI工具進行第一次實際的程式開發",
+      "lessons": [
+        {
+          "id": "stage1-lesson-3-1",
+          "title": "認識Cursor編輯器",
+          "description": "安裝並設定Cursor，了解AI輔助編程環境",
+          "type": "hands-on",
+          "duration": 55,
+          "isFree": false
+        },
+        {
+          "id": "stage1-lesson-3-2",
+          "title": "第一個網頁專案",
+          "description": "使用HTML和CSS建立第一個網頁",
+          "type": "project",
+          "duration": 80,
+          "isFree": false
+        },
+        {
+          "id": "stage1-lesson-3-3",
+          "title": "JavaScript基礎應用",
+          "description": "在網頁中加入簡單的互動功能",
+          "type": "hands-on",
+          "duration": 70,
+          "isFree": false
+        },
+        {
+          "id": "stage1-lesson-3-4",
+          "title": "除錯與優化",
+          "description": "學會使用AI工具進行除錯和代碼優化",
+          "type": "video",
+          "duration": 45,
+          "isFree": false
+        }
+      ],
+      "estimatedTime": "4-5小時"
+    },
+    {
+      "weekNumber": 4,
+      "title": "整合應用與專案完成",
+      "description": "整合前三週所學，完成個人作品集網站",
+      "lessons": [
+        {
+          "id": "stage1-lesson-4-1",
+          "title": "專案規劃與設計",
+          "description": "規劃個人作品集網站的結構和內容",
+          "type": "text",
+          "duration": 40,
+          "isFree": false
+        },
+        {
+          "id": "stage1-lesson-4-2",
+          "title": "完整網站開發",
+          "description": "實作完整的個人作品集網站",
+          "type": "project",
+          "duration": 120,
+          "isFree": false
+        },
+        {
+          "id": "stage1-lesson-4-3",
+          "title": "網站部署上線",
+          "description": "將網站部署到GitHub Pages",
+          "type": "hands-on",
+          "duration": 50,
+          "isFree": false
+        },
+        {
+          "id": "stage1-lesson-4-4",
+          "title": "學習成果展示",
+          "description": "分享學習心得和作品展示",
+          "type": "quiz",
+          "duration": 30,
+          "isFree": false
+        }
+      ],
+      "estimatedTime": "4-5小時"
+    }
+  ],
+  "finalProject": {
+    "title": "個人作品集網站",
+    "description": "建立一個完整的個人作品集網站，包含自我介紹、技能展示、專案展示和聯絡方式",
+    "deliverables": [
+      "響應式個人網站",
+      "GitHub程式碼倉庫",
+      "線上部署連結",
+      "專案說明文檔"
+    ],
+    "technologies": ["HTML", "CSS", "JavaScript", "GitHub Pages"],
+    "estimatedTime": "6-8小時"
+  },
+  "certificate": {
+    "title": "AI輔助開發基礎認證",
+    "description": "完成課程並通過專案評估後獲得認證",
+    "criteria": [
+      "完成所有課程內容",
+      "提交最終專案作品",
+      "通過同儕評分（4分以上）",
+      "參與課程討論和分享"
+    ]
+  }
+}

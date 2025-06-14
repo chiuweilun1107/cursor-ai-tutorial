@@ -1,0 +1,214 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# Cursor Learning 教學平台開發規則
+
+## 專案概述
+這是一個專為學習 Cursor AI 程式編輯器而設計的互動式教學平台，提供從基礎到進階的完整學習路徑。
+
+## 技術棧
+- **前端框架**: React 18 + TypeScript
+- **建構工具**: Vite
+- **樣式**: Tailwind CSS
+- **路由**: React Router DOM v6
+- **狀態管理**: Zustand
+- **圖標**: Lucide React
+- **開發工具**: ESLint + TypeScript
+
+## 專案架構
+
+### 目錄結構
+```
+src/
+├── components/         # 可重用組件
+│   ├── ui/            # 基礎UI組件 (Button, Badge, ProgressBar等)
+│   ├── layout/        # 布局組件
+│   ├── common/        # 通用組件
+│   └── course/        # 課程相關組件
+├── pages/             # 頁面組件
+├── stores/            # Zustand狀態管理
+├── data/              # 靜態資料和類型定義
+│   ├── courses/       # 課程資料
+│   └── lessons/       # 課程內容
+├── hooks/             # 自定義React Hooks
+├── utils/             # 工具函數
+└── types/             # TypeScript類型定義
+```
+
+## 編碼規範
+
+### React 組件
+- 使用函數式組件 + React Hooks
+- 使用 TypeScript 嚴格模式
+- 組件名稱使用 PascalCase
+- 檔案名稱與組件名稱一致
+- 每個組件都要有明確的 Props 類型定義
+
+```typescript
+// ✅ 正確示例
+interface CourseCardProps {
+  title: string;
+  description: string;
+  level: 'beginner' | 'intermediate' | 'advanced';
+  progress?: number;
+}
+
+const CourseCard: React.FC<CourseCardProps> = ({ title, description, level, progress = 0 }) => {
+  return (
+    <div className="course-card">
+      {/* 組件內容 */}
+    </div>
+  );
+};
+```
+
+### 狀態管理
+- 使用 Zustand 進行全局狀態管理
+- 本地狀態優先使用 useState
+- 複雜邏輯使用 useReducer
+- 副作用使用 useEffect
+
+```typescript
+// ✅ Zustand Store 示例
+interface CourseStore {
+  currentCourse: Course | null;
+  progress: Record<string, number>;
+  setCurrentCourse: (course: Course) => void;
+  updateProgress: (courseId: string, progress: number) => void;
+}
+```
+
+### 樣式規範
+- 使用 Tailwind CSS 優先
+- 避免內聯樣式，使用 className
+- 響應式設計：mobile-first 方法
+- 顏色使用語義化類名
+
+```tsx
+// ✅ 正確的樣式使用
+<div className="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow duration-200">
+  <h2 className="text-2xl font-bold text-gray-900 mb-4">課程標題</h2>
+</div>
+```
+
+### 路由規範
+- 使用 React Router DOM v6
+- 路由路徑使用小寫加連字符
+- 動態路由使用語義化參數名
+
+```typescript
+// ✅ 路由結構
+/                           # 首頁
+/courses                    # 課程總覽
+/courses/:courseId          # 課程詳情
+/learn/:courseId/:lessonId  # 課程學習
+/courses/beginner           # 初級課程
+/courses/intermediate       # 中級課程
+/courses/advanced          # 高級課程
+/tips                       # 實用技巧
+/faq                        # 常見問題
+```
+
+## 組件開發指導
+
+### UI組件設計原則
+1. **可重用性**: 組件應該可在多個地方使用
+2. **可配置性**: 通過 props 控制外觀和行為
+3. **無障礙性**: 支援鍵盤導航和螢幕閱讀器
+4. **響應式**: 適配各種螢幕尺寸
+
+### 頁面組件規範
+- 每個頁面都有對應的 TypeScript 檔案
+- 使用語義化的 HTML 標籤
+- 合理的標題層級結構 (h1, h2, h3...)
+- 包含適當的 meta 資訊和 SEO 標籤
+
+### 資料管理
+- 課程資料存放在 `src/data/courses/`
+- 課程內容存放在 `src/data/lessons/`
+- 使用 TypeScript 接口定義資料結構
+- 靜態資料使用 .ts 檔案，動態資料考慮 JSON
+
+## 開發工作流程
+
+### Git 提交規範
+使用 Conventional Commits 格式：
+```
+feat: 新增課程進度追蹤功能
+fix: 修復輪播組件在移動端的顯示問題
+docs: 更新 README.md
+style: 統一代碼格式
+refactor: 重構課程資料結構
+```
+
+### 測試策略
+- 組件功能測試
+- 用戶互動測試
+- 響應式設計測試
+- 無障礙功能測試
+
+### 效能優化
+- 使用 React.memo 避免不必要的重渲染
+- 大型列表使用虛擬化或分頁
+- 圖片懶加載
+- 代碼分割和動態導入
+
+## 特定功能規範
+
+### 輪播組件 (HeroCarousel)
+- 支援鍵盤導航 (←/→ 切換, 空格暫停, Esc停止)
+- 滑鼠懸停自動暫停
+- 無障礙標籤和說明
+- 自動播放控制
+
+### 課程系統
+- 三階段學習路徑：初級、中級、高級
+- 進度追蹤和本地存儲
+- 課程完成狀態管理
+
+### 互動功能
+- 平滑的頁面轉場
+- 載入狀態指示
+- 錯誤處理和用戶反饋
+- 響應式互動元素
+
+## 程式碼品質要求
+
+### TypeScript
+- 啟用嚴格模式
+- 避免使用 `any` 類型
+- 為所有 props 和 state 定義明確類型
+- 使用聯合類型和泛型增強型別安全
+
+### 效能考量
+- 避免在 render 函數中創建新對象
+- 使用 useCallback 和 useMemo 優化
+- 合理使用 key 屬性
+- 避免深層巢狀組件
+
+### 可維護性
+- 單一職責原則：每個組件只負責一個功能
+- 組件大小控制在 200 行以內
+- 使用有意義的變數和函數名稱
+- 添加必要的註釋說明複雜邏輯
+
+## 部署和維護
+
+### 建構優化
+```bash
+npm run build      # 生產建構
+npm run preview    # 預覽建構結果
+npm run lint       # 代碼檢查
+```
+
+### 瀏覽器支援
+- Chrome/Edge: 最新版本
+- Firefox: 最新版本  
+- Safari: 最新版本
+- 移動瀏覽器: iOS Safari, Chrome Mobile
+
+---
+
+遵循這些規則可以確保程式碼品質、一致性和可維護性，為用戶提供優質的學習體驗。 

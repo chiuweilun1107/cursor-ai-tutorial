@@ -1,0 +1,259 @@
+[
+  {
+    "id": "stage1-lesson-1-1",
+    "courseId": "stage1-beginner",
+    "title": "什麼是AI輔助開發？",
+    "description": "理解AI輔助開發的革命性意義，認識ChatGPT、Cursor、Claude三大工具",
+    "type": "slides",
+    "duration": 45,
+    "isFree": true,
+    "order": 1,
+    "weekNumber": 1,
+    "objectives": [
+      "理解AI輔助開發的基本概念",
+      "認識三大核心AI工具及其作用",
+      "建立正確的學習心態和期望"
+    ],
+    "content": {
+      "slides": "/content/stage1/1-1.md",
+      "markdown": "/content/stage1/1-1.md",
+      "codeExamples": [],
+      "exercises": [
+        {
+          "id": "exercise-1-1-1",
+          "title": "AI工具體驗",
+          "description": "註冊ChatGPT帳號並進行第一次對話",
+          "type": "discussion",
+          "difficulty": "easy",
+          "estimatedTime": 15,
+          "hints": [
+            "可以問ChatGPT關於程式設計的基本問題",
+            "觀察AI如何回答和解釋概念",
+            "嘗試用不同方式問同一個問題"
+          ]
+        }
+      ],
+      "resources": [
+        {
+          "id": "resource-1-1-1",
+          "title": "ChatGPT官方網站",
+          "type": "link",
+          "url": "https://chat.openai.com",
+          "description": "註冊ChatGPT帳號"
+        },
+        {
+          "id": "resource-1-1-2",
+          "title": "Cursor官方網站",
+          "type": "link",
+          "url": "https://cursor.com",
+          "description": "了解Cursor編輯器功能"
+        }
+      ]
+    }
+  },
+  {
+    "id": "stage1-lesson-1-2",
+    "courseId": "stage1-beginner",
+    "title": "ChatGPT對話技巧與提示詞工程",
+    "description": "掌握與AI有效對話的技巧，學會設計高品質提示詞",
+    "type": "hands-on",
+    "duration": 60,
+    "isFree": true,
+    "order": 2,
+    "weekNumber": 1,
+    "objectives": [
+      "掌握有效的AI對話技巧",
+      "學會設計高品質提示詞",
+      "能夠讓AI成為程式學習助手"
+    ],
+    "content": {
+      "videoUrl": "/videos/stage1/lesson-1-2.mp4",
+      "markdown": "/content/stage1/lesson-1-2.md",
+      "codeExamples": [
+        {
+          "id": "example-1-2-1",
+          "title": "提示詞範例：角色扮演",
+          "language": "text",
+          "code": "你是一位資深的網頁開發導師，擅長用簡單易懂的方式教授初學者。\n請用以下方式回答我的問題：\n1. 先解釋概念的基本原理\n2. 提供實際的代碼範例\n3. 說明常見的錯誤和注意事項\n4. 給出下一步學習建議",
+          "explanation": "透過角色扮演，讓AI更專業地回答問題"
+        }
+      ],
+      "exercises": [
+        {
+          "id": "exercise-1-2-1",
+          "title": "設計專業提示詞",
+          "description": "使用CLEAR框架設計一個詢問AI幫助建立網站的完整提示詞",
+          "type": "coding",
+          "difficulty": "easy",
+          "estimatedTime": 20,
+          "template": "## 背景\n我是...\n\n## 目標\n我想要...\n\n## 要求\n請幫我...",
+          "hints": [
+            "使用CLEAR框架：Context, Language, Example, Audience, Requirements",
+            "提供具體的背景資訊",
+            "明確說明期望的輸出格式"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "stage1-lesson-1-3",
+    "courseId": "stage1-beginner",
+    "title": "第一次動手實作 - HTML基礎",
+    "description": "使用ChatGPT學習HTML，親手編寫第一個網頁",
+    "type": "hands-on",
+    "duration": 90,
+    "isFree": false,
+    "order": 3,
+    "weekNumber": 1,
+    "objectives": [
+      "理解HTML的基本概念和作用",
+      "使用ChatGPT學習HTML語法",
+      "親手編寫第一個網頁"
+    ],
+    "content": {
+      "videoUrl": "/videos/stage1/lesson-1-3.mp4",
+      "markdown": "/content/stage1/lesson-1-3.md",
+      "codeExamples": [
+        {
+          "id": "example-1-3-1",
+          "title": "基本HTML結構",
+          "language": "html",
+          "code": "<!DOCTYPE html>\n<html lang=\"zh-TW\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>我的第一個網頁</title>\n</head>\n<body>\n    <h1>歡迎來到我的網站</h1>\n    <p>這是我使用AI輔助開發的第一個網頁！</p>\n</body>\n</html>",
+          "explanation": "這是最基本的HTML文檔結構，包含必要的元素"
+        }
+      ],
+      "exercises": [
+        {
+          "id": "exercise-1-3-1",
+          "title": "建立個人介紹頁面",
+          "description": "使用HTML建立一個包含個人資訊的網頁",
+          "type": "coding",
+          "difficulty": "easy",
+          "estimatedTime": 45,
+          "template": "<!DOCTYPE html>\n<html>\n<head>\n    <title><!-- 你的名字 --></title>\n</head>\n<body>\n    <!-- 在這裡加入你的內容 -->\n</body>\n</html>",
+          "solution": "<!DOCTYPE html>\n<html lang=\"zh-TW\">\n<head>\n    <meta charset=\"UTF-8\">\n    <title>張三的個人介紹</title>\n</head>\n<body>\n    <h1>張三</h1>\n    <h2>關於我</h2>\n    <p>我是一位對AI技術充滿熱忱的學習者...</p>\n    <h2>我的技能</h2>\n    <ul>\n        <li>學習能力強</li>\n        <li>對新技術有興趣</li>\n    </ul>\n</body>\n</html>",
+          "hints": [
+            "使用<h1>標籤作為姓名",
+            "用<p>標籤寫自我介紹",
+            "用<ul>和<li>列出技能"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "stage1-lesson-1-4",
+    "courseId": "stage1-beginner",
+    "title": "Cursor初體驗",
+    "description": "安裝並設定Cursor編輯器，體驗AI輔助程式開發",
+    "type": "hands-on",
+    "duration": 75,
+    "isFree": false,
+    "order": 4,
+    "weekNumber": 1,
+    "objectives": [
+      "安裝並設定Cursor編輯器",
+      "體驗AI輔助程式開發",
+      "使用Cursor優化HTML代碼"
+    ],
+    "content": {
+      "videoUrl": "/videos/stage1/lesson-1-4.mp4",
+      "markdown": "/content/stage1/lesson-1-4.md",
+      "exercises": [
+        {
+          "id": "exercise-1-4-1",
+          "title": "Cursor功能探索",
+          "description": "使用Cursor的AI功能改進之前的HTML頁面",
+          "type": "coding",
+          "difficulty": "easy",
+          "estimatedTime": 30,
+          "hints": [
+            "嘗試使用Ctrl+L開啟AI對話",
+            "請AI幫助優化HTML結構",
+            "體驗代碼自動補全功能"
+          ]
+        }
+      ],
+      "resources": [
+        {
+          "id": "resource-1-4-1",
+          "title": "Cursor快捷鍵指南",
+          "type": "download",
+          "url": "/downloads/cursor-shortcuts.pdf",
+          "description": "常用快捷鍵列表"
+        }
+      ]
+    }
+  },
+  {
+    "id": "stage1-lesson-2-1",
+    "courseId": "stage1-beginner",
+    "title": "程式設計基本概念",
+    "description": "建立程式設計的基本思維，理解變數、函數等核心概念",
+    "type": "video",
+    "duration": 60,
+    "isFree": false,
+    "order": 5,
+    "weekNumber": 2,
+    "objectives": [
+      "建立程式設計的基本思維",
+      "理解變數、函數、條件判斷等概念",
+      "能用自然語言描述程式邏輯"
+    ],
+    "content": {
+      "videoUrl": "/videos/stage1/lesson-2-1.mp4",
+      "markdown": "/content/stage1/lesson-2-1.md",
+      "exercises": [
+        {
+          "id": "exercise-2-1-1",
+          "title": "生活化程式概念",
+          "description": "用生活例子解釋「迴圈」的概念",
+          "type": "discussion",
+          "difficulty": "easy",
+          "estimatedTime": 15,
+          "hints": [
+            "想想日常生活中重複做的事情",
+            "思考什麼時候會停止重複",
+            "舉出3個不同的例子"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "stage1-lesson-2-2",
+    "courseId": "stage1-beginner",
+    "title": "邏輯思維訓練",
+    "description": "培養邏輯分析能力，學會問題分解技巧",
+    "type": "hands-on",
+    "duration": 75,
+    "isFree": false,
+    "order": 6,
+    "weekNumber": 2,
+    "objectives": [
+      "培養邏輯分析能力",
+      "學會問題分解技巧",
+      "能設計簡單的演算法"
+    ],
+    "content": {
+      "videoUrl": "/videos/stage1/lesson-2-2.mp4",
+      "markdown": "/content/stage1/lesson-2-2.md",
+      "exercises": [
+        {
+          "id": "exercise-2-2-1",
+          "title": "設計猜數字遊戲邏輯",
+          "description": "用自然語言設計猜數字遊戲的完整流程",
+          "type": "discussion",
+          "difficulty": "medium",
+          "estimatedTime": 25,
+          "hints": [
+            "思考遊戲的開始條件",
+            "考慮所有可能的情況",
+            "設計結束條件"
+          ]
+        }
+      ]
+    }
+  }
+]
