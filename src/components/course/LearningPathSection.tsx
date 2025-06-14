@@ -267,7 +267,7 @@ const LearningPathSection: React.FC = () => {
                 }}
               >
                 {/* Image Container - Apple style with larger image */}
-                <div className="relative h-48 md:h-64 overflow-hidden">
+                <div className="relative h-56 md:h-72 overflow-hidden">
                   <img
                     src={course.image}
                     alt={course.title}
@@ -289,28 +289,28 @@ const LearningPathSection: React.FC = () => {
                 </div>
 
                 {/* Content - More compact Apple style */}
-                <div className="p-4 md:p-6">
+                <div className="p-4 md:p-5">
                   {/* Title */}
                   <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-1">
                     {course.title}
                   </h3>
 
                   {/* Instructor - smaller and lighter */}
-                  <p className="text-gray-500 text-sm mb-3 md:mb-4">
+                  <p className="text-gray-500 text-sm mb-2 md:mb-3">
                     by {course.instructor}
                   </p>
 
                   {/* Learning Content Description */}
-                  <div className="mb-4 md:mb-6">
+                  <div className="mb-3 md:mb-4">
                     <p className="text-sm text-gray-600 leading-relaxed line-clamp-3">
                       {course.description}
                     </p>
                   </div>
 
                   {/* Price Section - 兩行佈局 */}
-                  <div className="mb-4 md:mb-5">
+                  <div className="mb-3 md:mb-4">
                     {/* 第一行：現價 */}
-                    <div className="mb-2">
+                    <div className="mb-1">
                       <span className="text-2xl md:text-3xl font-bold text-gray-900">
                         {course.price}
                       </span>
