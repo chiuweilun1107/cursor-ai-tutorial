@@ -24,23 +24,35 @@ const heroImages = {
 
 // ===== 課程相關圖片 - 教育學習主題 =====
 const courseImages = {
-  // 全端開發能力
-  beginner: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=800&h=600&fit=crop&crop=center', // MacBook with code
+  // 零基礎啟蒙 - 學習書籍和筆記本
+  beginner: 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=800&h=600&fit=crop&crop=center', // 筆記本和學習材料
 
-  // AI工具熟練（本地圖片）
-  aiToolsExpert: '/src/assets/images/heroes/hero-ai-tools.jpg', // 本地圖片
+  // AI工具熟練 - 現代辦公環境與AI工具
+  aiToolsExpert: 'https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=800&h=600&fit=crop&crop=center', // 現代科技辦公環境
 
-  // 企業級技能
+  // 全端開發能力 - 程式開發環境
+  fullstack: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=800&h=600&fit=crop&crop=center', // MacBook with code
+
+  // 企業級技能 - 現代企業辦公室
   advanced: 'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?w=800&h=600&fit=crop&crop=center', // 多螢幕現代辦公室
 
-  // 系統架構師
+  // 系統架構師 - 系統架構圖
   architect: 'https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?w=800&h=600&fit=crop&crop=center', // 架構設計圖
 
   // MCP課程 - AI技術相關
   mcp: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800&h=600&fit=crop&crop=center', // AI晶片技術
 
   // 企業課程 - 商業應用相關
-  enterprise: 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=800&h=600&fit=crop&crop=center' // 企業辦公環境
+  enterprise: 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=800&h=600&fit=crop&crop=center', // 企業辦公環境
+  
+  // 團隊協作 - 團隊會議和討論
+  teamwork: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=600&fit=crop&crop=center', // 團隊會議
+  
+  // 創新技術 - 科技創新
+  innovation: 'https://images.unsplash.com/photo-1518432031352-d6fc5c10da5a?w=800&h=600&fit=crop&crop=center', // 現代科技
+  
+  // 數據分析 - 圖表和數據
+  analytics: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop&crop=center' // 數據分析螢幕
 }
 
 // ===== 學習路徑圖片 - 進階學習主題 =====
@@ -55,7 +67,16 @@ const learningPathImages = {
   advanced: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&h=400&fit=crop&crop=center', // 複雜程式碼
   
   // 專業認證 - 成就達成
-  certification: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=600&h=400&fit=crop&crop=center' // 畢業帽學位
+  certification: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=600&h=400&fit=crop&crop=center', // 畢業帽學位
+  
+  // 研究學習 - 深度研究
+  research: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=400&fit=crop&crop=center', // 研究環境
+  
+  // 創意思考 - 創新想法
+  creativity: 'https://images.unsplash.com/photo-1542435503-956c469947f6?w=600&h=400&fit=crop&crop=center', // 創意設計
+  
+  // 技能提升 - 技能發展
+  skillup: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600&h=400&fit=crop&crop=center' // 技能提升
 }
 
 // ===== MCP課程專用圖片 - AI協議主題 =====
@@ -82,7 +103,16 @@ const mcpImages = {
   feature3: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800&h=600&fit=crop&crop=center', // 智能技術整合
   
   // 用戶見證
-  testimonial: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=600&fit=crop&crop=center' // 團隊成功案例
+  testimonial: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=600&fit=crop&crop=center', // 團隊成功案例
+  
+  // 數據庫連接
+  database: 'https://images.unsplash.com/photo-1544383835-bda2bc66a55d?w=800&h=600&fit=crop&crop=center', // 數據庫圖示
+  
+  // API整合
+  api: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&h=600&fit=crop&crop=center', // API連接
+  
+  // 檔案系統
+  filesystem: 'https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?w=800&h=600&fit=crop&crop=center' // 檔案系統圖
 }
 
 // ===== 投影片專用圖片 - 教學內容主題 =====
@@ -115,7 +145,31 @@ const slideImages = {
   learning: 'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=800&h=600&fit=crop&crop=center', // 學習環境
   
   // 未來發展
-  future: 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=800&h=600&fit=crop&crop=center' // 未來科技
+  future: 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=800&h=600&fit=crop&crop=center', // 未來科技
+  
+  // 資料科學
+  datascience: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop&crop=center', // 資料分析
+  
+  // 雲端技術
+  cloud: 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=800&h=600&fit=crop&crop=center', // 雲端運算
+  
+  // 網路安全
+  security: 'https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=800&h=600&fit=crop&crop=center' // 網路安全
+}
+
+// ===== UI與介面圖片 - 界面設計主題 =====
+const uiImages = {
+  // 使用者介面設計
+  interface: 'https://images.unsplash.com/photo-1541462608143-67571c6738dd?w=800&h=600&fit=crop&crop=center', // UI設計
+  
+  // 行動應用介面
+  mobile: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800&h=600&fit=crop&crop=center', // 手機App介面
+  
+  // 網頁設計
+  webdesign: 'https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=800&h=600&fit=crop&crop=center', // 網頁設計
+  
+  // 使用者體驗
+  ux: 'https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=800&h=600&fit=crop&crop=center' // UX設計
 }
 
 // ===== 通用圖片 - 一般用途 =====
@@ -127,7 +181,13 @@ const generalImages = {
   loading: 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=400&h=300&fit=crop&crop=center',
   
   // 錯誤圖片
-  error: 'https://images.unsplash.com/photo-1504639725590-34d0984388bd?w=400&h=300&fit=crop&crop=center'
+  error: 'https://images.unsplash.com/photo-1504639725590-34d0984388bd?w=400&h=300&fit=crop&crop=center',
+  
+  // 成功圖片
+  success: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=400&h=300&fit=crop&crop=center',
+  
+  // 空狀態圖片
+  empty: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=300&fit=crop&crop=center'
 }
 
 // ===== 主要匯出物件 =====
@@ -137,6 +197,7 @@ export const imageAssets = {
   learningPath: learningPathImages,
   mcp: mcpImages,
   slides: slideImages,
+  ui: uiImages,
   general: generalImages
 }
 
@@ -202,7 +263,20 @@ export const getImageByKeywords = (keywords: string[]): string => {
     'achievement': slideImages.achievement,
     'success': slideImages.achievement,
     '成就': slideImages.achievement,
-    '成功': slideImages.achievement
+    '成功': slideImages.achievement,
+    
+    // UI/UX相關
+    'ui': uiImages.interface,
+    'ux': uiImages.ux,
+    'design': uiImages.webdesign,
+    '設計': uiImages.webdesign,
+    '介面': uiImages.interface,
+    
+    // 數據相關
+    'data': slideImages.datascience,
+    'analytics': courseImages.analytics,
+    '數據': slideImages.datascience,
+    '分析': courseImages.analytics
   }
   
   // 尋找匹配的關鍵字
@@ -221,7 +295,10 @@ export const getImageByKeywords = (keywords: string[]): string => {
 export const getCourseImage = (courseId: string): string => {
   const courseMap: Record<string, string> = {
     'stage1-beginner': courseImages.beginner,
-    'stage2-advanced': courseImages.advanced,
+    'stage2-intermediate': courseImages.aiToolsExpert,
+    'stage3-fullstack': courseImages.fullstack,
+    'stage4-enterprise': courseImages.advanced,
+    'stage5-architect': courseImages.architect,
     'mcp-course': courseImages.mcp,
     'enterprise-course': courseImages.enterprise
   }
@@ -235,7 +312,10 @@ export const getLearningPathImage = (pathType: string): string => {
     'foundation': learningPathImages.foundation,
     'practice': learningPathImages.practice,
     'advanced': learningPathImages.advanced,
-    'certification': learningPathImages.certification
+    'certification': learningPathImages.certification,
+    'research': learningPathImages.research,
+    'creativity': learningPathImages.creativity,
+    'skillup': learningPathImages.skillup
   }
   
   return pathMap[pathType] || generalImages.default
@@ -289,6 +369,26 @@ export const getSlideImage = (content: string): string => {
   // 成就相關
   if (keywords.some(k => ['achievement', 'success', '成就', '成功'].includes(k))) {
     return slideImages.achievement
+  }
+  
+  // UI/UX相關
+  if (keywords.some(k => ['ui', 'ux', 'design', '設計', '介面'].includes(k))) {
+    return uiImages.interface
+  }
+  
+  // 資料科學相關
+  if (keywords.some(k => ['data', 'analytics', '數據', '分析'].includes(k))) {
+    return slideImages.datascience
+  }
+  
+  // 雲端技術相關
+  if (keywords.some(k => ['cloud', '雲端', 'aws', 'azure'].includes(k))) {
+    return slideImages.cloud
+  }
+  
+  // 網路安全相關
+  if (keywords.some(k => ['security', '安全', 'cybersecurity'].includes(k))) {
+    return slideImages.security
   }
   
   // 預設返回學習圖片

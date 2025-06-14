@@ -195,7 +195,7 @@ const LearningPathSection: React.FC = () => {
   }
 
   return (
-    <section className="py-20 pb-40 bg-gradient-to-br from-gray-50 to-white">
+    <section className="py-20 pb-60 bg-gradient-to-br from-gray-50 to-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="flex flex-col md:flex-row md:justify-between md:items-center mb-12">
@@ -342,21 +342,7 @@ const LearningPathSection: React.FC = () => {
           </div>
         </div>
 
-        {/* Mobile Touch Indicator - 只在手機顯示 */}
-        {isMobile && (
-          <div className="flex justify-center mt-6">
-            <div className="flex space-x-2">
-              {courses.map((_, index) => (
-                <div
-                  key={index}
-                  className={`w-2 h-2 rounded-full transition-colors duration-200 ${
-                    index === currentIndex ? 'bg-blue-600' : 'bg-gray-300'
-                  }`}
-                />
-              ))}
-            </div>
-          </div>
-        )}
+
       </div>
     </section>
   )

@@ -41,7 +41,7 @@
     "originalPrice": 7999,
     "isPopular": false,
     "isFree": false,
-    "image": "/images/ai-tools-expert.jpg",
+    "image": "https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=800&h=600&fit=crop&crop=center",
     "technologies": ["Cursor Rules", "ChatGPT API", "Claude", "React基礎", "Node.js"],
     "instructors": ["AI開發專家團隊"],
     "rating": 4.7,

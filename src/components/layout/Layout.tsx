@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { Menu, X, Home, Layers, Zap, Target, Lightbulb, HelpCircle } from 'lucide-react'
+import { Menu, X, BookOpen, ExternalLink, FileText, Settings, HelpCircle } from 'lucide-react'
 
 interface LayoutProps {
   children: React.ReactNode
@@ -11,11 +11,11 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   const location = useLocation()
 
   const navigation = [
-    { name: '首頁', href: '/', icon: Home },
-    { name: 'AI工具生態', href: '/courses', icon: Layers },
-    { name: 'MCP技術', href: '/courses/mcp', icon: Zap },
-    { name: '實戰應用', href: '/tips', icon: Target },
-    { name: '社群討論', href: '/faq', icon: HelpCircle },
+    { name: '課程總覽', href: '/courses', icon: BookOpen },
+    { name: '使用指南', href: '/tips', icon: FileText },
+    { name: '常見問題', href: '/faq', icon: HelpCircle },
+    { name: '實用連結', href: '/resources', icon: ExternalLink },
+    { name: '設定', href: '/settings', icon: Settings },
   ]
 
   const isActive = (path: string) => {
@@ -29,7 +29,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       {/* Navigation Header */}
       <nav className="bg-white shadow-sm border-b">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between h-16">
+          <div className="flex justify-between items-center h-16">
             {/* Logo */}
             <div className="flex items-center">
               <Link to="/" className="flex items-center space-x-3">
@@ -44,7 +44,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
             </div>
 
             {/* Desktop Navigation */}
-            <div className="hidden md:flex space-x-8">
+            <div className="hidden md:flex items-center space-x-8">
               {navigation.map((item) => {
                 const Icon = item.icon
                 return (
@@ -64,11 +64,11 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
               })}
             </div>
 
-            {/* Mobile menu button */}
-            <div className="md:hidden">
+            {/* Mobile menu button - 修復垂直對齊 */}
+            <div className="md:hidden flex items-center">
               <button
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className="p-2 rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-100"
+                className="flex items-center justify-center p-2 rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-100 w-10 h-10"
               >
                 {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
               </button>
