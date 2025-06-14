@@ -195,7 +195,7 @@ const LearningPathSection: React.FC = () => {
   }
 
   return (
-    <section className="py-12 pb-40 bg-gradient-to-br from-gray-50 to-white">
+    <section className="py-12 pb-20 bg-gradient-to-br from-gray-50 to-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="flex flex-col md:flex-row md:justify-between md:items-center mb-8">
@@ -217,7 +217,7 @@ const LearningPathSection: React.FC = () => {
       </div>
 
       {/* Carousel Container - 優化滾動條和觸控 */}
-      <div className="relative w-full">
+      <div className="relative w-full py-8 md:py-12">
         {/* Desktop Navigation Arrows - 只在非手機設備顯示 */}
         {!isMobile && currentIndex > 0 && (
           <button
@@ -240,7 +240,7 @@ const LearningPathSection: React.FC = () => {
         {/* Cards Container - 優化溢出和滾動 */}
         <div 
           ref={carouselRef}
-          className="overflow-hidden scrollbar-hide"
+          className="overflow-hidden scrollbar-hide py-4 md:py-6"
         >
           
           <div 
