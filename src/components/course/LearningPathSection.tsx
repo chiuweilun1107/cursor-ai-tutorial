@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { imageAssets } from '../../utils/imageAssets'
@@ -21,6 +21,22 @@ interface Course {
 
 const LearningPathSection: React.FC = () => {
   const [currentIndex, setCurrentIndex] = useState(0)
+  const [isMobile, setIsMobile] = useState(false)
+  const [isDragging, setIsDragging] = useState(false)
+  const [startPos, setStartPos] = useState(0)
+  const [scrollLeft, setScrollLeft] = useState(0)
+  const carouselRef = useRef<HTMLDivElement>(null)
+
+  // 檢測螢幕大小
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768)
+    }
+    
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
 
   const courses: Course[] = [
     {
@@ -43,7 +59,7 @@ const LearningPathSection: React.FC = () => {
       title: "AI工具熟練",
       subtitle: "深度整合三大AI工具，建立工作流程",
       description: "配置Cursor Rules、整合ChatGPT API與Claude、建立AI開發工作流程",
-      image: "/images/ai-tools-expert.jpg",
+      image: "/src/assets/images/heroes/hero-ai-tools.jpg",
       price: "NT$ 4,999",
       originalPrice: "NT$ 7,999",
       progress: 56,
@@ -73,7 +89,7 @@ const LearningPathSection: React.FC = () => {
       title: "企業級技能",
       subtitle: "MCP協議與企業系統整合",
       description: "掌握MCP協議、Docker容器化、微服務架構設計與企業級開發實戰",
-      image: "/images/pexels-mikael-blomkvist-6476808.jpg",
+      image: "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=800&h=600&fit=crop&crop=center",
       price: "NT$ 12,999",
       originalPrice: "NT$ 19,999",
       progress: 23,
@@ -101,8 +117,9 @@ const LearningPathSection: React.FC = () => {
   ]
 
   // 計算可以滑動的最大索引，避免最後留白
-  const cardWidth = 320 // 卡片寬度 (w-80 = 320px) + gap
-  const maxSlides = courses.length - 3 // 最多滑動到只剩3張卡片可見
+  const cardWidth = isMobile ? 280 : 320 // 響應式卡片寬度
+  const visibleCards = isMobile ? 1 : 3 // 手機顯示1張，桌面顯示3張
+  const maxSlides = courses.length - visibleCards
   const maxIndex = Math.max(0, maxSlides)
 
   const nextSlide = () => {
@@ -113,13 +130,77 @@ const LearningPathSection: React.FC = () => {
     setCurrentIndex((prev) => Math.max(prev - 1, 0))
   }
 
+  // 觸控事件處理
+  const handleTouchStart = (e: React.TouchEvent) => {
+    if (!isMobile) return
+    setIsDragging(true)
+    setStartPos(e.touches[0].clientX)
+  }
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (!isDragging || !isMobile) return
+    
+    const currentPos = e.touches[0].clientX
+    const diff = startPos - currentPos
+    
+    // 阻止默認滾動行為
+    e.preventDefault()
+  }
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (!isDragging || !isMobile) return
+    
+    setIsDragging(false)
+    const endPos = e.changedTouches[0].clientX
+    const diff = startPos - endPos
+    
+    // 滑動閾值
+    const threshold = 50
+    
+    if (Math.abs(diff) > threshold) {
+      if (diff > 0 && currentIndex < maxIndex) {
+        nextSlide()
+      } else if (diff < 0 && currentIndex > 0) {
+        prevSlide()
+      }
+    }
+  }
+
+  // 鼠標拖拽事件處理（桌面版）
+  const handleMouseDown = (e: React.MouseEvent) => {
+    if (isMobile) return
+    setIsDragging(true)
+    setStartPos(e.clientX)
+    setScrollLeft(carouselRef.current?.scrollLeft || 0)
+  }
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!isDragging || isMobile) return
+    e.preventDefault()
+    
+    const x = e.clientX
+    const diff = x - startPos
+    
+    if (carouselRef.current) {
+      carouselRef.current.scrollLeft = scrollLeft - diff
+    }
+  }
+
+  const handleMouseUp = () => {
+    setIsDragging(false)
+  }
+
+  const handleMouseLeave = () => {
+    setIsDragging(false)
+  }
+
   return (
-    <section className="py-20 pb-32 bg-gradient-to-br from-gray-50 to-white">
+    <section className="py-20 pb-40 bg-gradient-to-br from-gray-50 to-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="flex justify-between items-center mb-12">
-          <div>
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+        <div className="flex flex-col md:flex-row md:justify-between md:items-center mb-12">
+          <div className="mb-4 md:mb-0">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
               從零基礎到系統架構師
             </h2>
             <p className="text-lg text-gray-600">
@@ -128,54 +209,70 @@ const LearningPathSection: React.FC = () => {
           </div>
           <Link 
             to="/courses" 
-            className="text-blue-600 hover:text-blue-700 font-medium text-lg"
+            className="text-blue-600 hover:text-blue-700 font-medium text-lg self-start md:self-auto"
           >
             查看所有課程 &gt;
           </Link>
         </div>
       </div>
 
-      {/* Carousel Container - 完全無邊界限制 */}
-      <div className="relative w-full overflow-x-hidden">
-        {/* Left Arrow */}
-        {currentIndex > 0 && (
+      {/* Carousel Container - 優化滾動條和觸控 */}
+      <div className="relative w-full">
+        {/* Desktop Navigation Arrows - 只在非手機設備顯示 */}
+        {!isMobile && currentIndex > 0 && (
           <button
             onClick={prevSlide}
-            className="absolute left-8 top-1/2 -translate-y-1/2 z-10 bg-white rounded-full p-3 shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-110"
+            className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-10 bg-white rounded-full p-3 shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-110"
           >
             <ChevronLeft className="w-6 h-6 text-gray-600" />
           </button>
         )}
 
-        {/* Right Arrow */}
-        {currentIndex < maxIndex && (
+        {!isMobile && currentIndex < maxIndex && (
           <button
             onClick={nextSlide}
-            className="absolute right-8 top-1/2 -translate-y-1/2 z-10 bg-white rounded-full p-3 shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-110"
+            className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-10 bg-white rounded-full p-3 shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-110"
           >
             <ChevronRight className="w-6 h-6 text-gray-600" />
           </button>
         )}
 
-        {/* Cards Container - 完全無邊界，左右可以延伸 */}
-        <div className="overflow-hidden">
+        {/* Cards Container - 優化溢出和滾動 */}
+        <div 
+          ref={carouselRef}
+          className="overflow-hidden scrollbar-hide"
+        >
+          
           <div 
-            className="flex transition-transform duration-500 ease-in-out gap-6 pl-16"
+            className={`flex smooth-transform gap-4 md:gap-6 no-select ${
+              isMobile ? 'mobile-spacing' : 'pl-8 md:pl-16'
+            }`}
             style={{ 
-              transform: `translateX(-${currentIndex * cardWidth}px)`
+              transform: `translateX(-${currentIndex * (cardWidth + (isMobile ? 16 : 24))}px)`
             }}
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
+            onMouseDown={handleMouseDown}
+            onMouseMove={handleMouseMove}
+            onMouseUp={handleMouseUp}
+            onMouseLeave={handleMouseLeave}
           >
             {courses.map((course) => (
               <div
                 key={course.id}
-                className="flex-shrink-0 w-80 bg-white rounded-3xl shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden group cursor-pointer"
+                className={`flex-shrink-0 bg-white rounded-3xl shadow-md course-card-transition overflow-hidden group cursor-pointer no-select`}
+                style={{ 
+                  width: isMobile ? '280px' : '320px'
+                }}
               >
                 {/* Image Container - Apple style with larger image */}
-                <div className="relative h-64 overflow-hidden">
+                <div className="relative h-48 md:h-64 overflow-hidden">
                   <img
                     src={course.image}
                     alt={course.title}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                    draggable={false}
                   />
                   
                   {/* Limited Time Badge */}
@@ -192,29 +289,29 @@ const LearningPathSection: React.FC = () => {
                 </div>
 
                 {/* Content - More compact Apple style */}
-                <div className="p-6">
+                <div className="p-4 md:p-6">
                   {/* Title */}
-                  <h3 className="text-2xl font-bold text-gray-900 mb-1">
+                  <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-1">
                     {course.title}
                   </h3>
 
                   {/* Instructor - smaller and lighter */}
-                  <p className="text-gray-500 text-sm mb-4">
+                  <p className="text-gray-500 text-sm mb-3 md:mb-4">
                     by {course.instructor}
                   </p>
 
-                  {/* Learning Content Description - 移除募資倒數區塊 */}
-                  <div className="mb-6">
-                    <p className="text-sm text-gray-600 leading-relaxed">
+                  {/* Learning Content Description */}
+                  <div className="mb-4 md:mb-6">
+                    <p className="text-sm text-gray-600 leading-relaxed line-clamp-3">
                       {course.description}
                     </p>
                   </div>
 
                   {/* Price Section - 兩行佈局 */}
-                  <div className="mb-5">
+                  <div className="mb-4 md:mb-5">
                     {/* 第一行：現價 */}
                     <div className="mb-2">
-                      <span className="text-3xl font-bold text-gray-900">
+                      <span className="text-2xl md:text-3xl font-bold text-gray-900">
                         {course.price}
                       </span>
                     </div>
@@ -235,7 +332,7 @@ const LearningPathSection: React.FC = () => {
                   {/* CTA Button - Apple style */}
                   <Link
                     to={course.id === 'stage1-beginner' ? `/course/${course.id}` : `/under-development/${course.id}`}
-                    className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-4 px-6 rounded-2xl transition-colors duration-200 text-center block text-lg"
+                    className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 md:py-4 px-6 rounded-2xl transition-colors duration-200 text-center block text-base md:text-lg"
                   >
                     {course.id === 'stage1-beginner' ? '立即加入' : '即將推出'}
                   </Link>
@@ -244,6 +341,22 @@ const LearningPathSection: React.FC = () => {
             ))}
           </div>
         </div>
+
+        {/* Mobile Touch Indicator - 只在手機顯示 */}
+        {isMobile && (
+          <div className="flex justify-center mt-6">
+            <div className="flex space-x-2">
+              {courses.map((_, index) => (
+                <div
+                  key={index}
+                  className={`w-2 h-2 rounded-full transition-colors duration-200 ${
+                    index === currentIndex ? 'bg-blue-600' : 'bg-gray-300'
+                  }`}
+                />
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     </section>
   )

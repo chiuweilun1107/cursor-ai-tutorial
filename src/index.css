@@ -244,3 +244,56 @@
   box-shadow: 0 0 20px rgba(59, 130, 246, 0.4);
   transition: box-shadow 0.3s ease;
 }
+
+/* 滾動條隱藏 */
+.scrollbar-hide {
+  /* IE and Edge */
+  -ms-overflow-style: none;
+  /* Firefox */
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  /* Chrome, Safari and Opera */
+  display: none;
+}
+
+/* 文字限制行數 */
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* 課程卡片動畫優化 */
+.course-card-transition {
+  transition: all 0.3s ease;
+}
+
+.course-card-transition:hover {
+  transform: translateY(-4px);
+}
+
+/* 觸控拖拽時禁用選擇 */
+.no-select {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* 平滑過渡動畫 */
+.smooth-transform {
+  transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* 響應式間距調整 */
+@media (max-width: 768px) {
+  .mobile-spacing {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
